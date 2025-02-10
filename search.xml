@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Vue插件</title>
+      <link href="/2025/02/02/Vue%E6%8F%92%E4%BB%B6/"/>
+      <url>/2025/02/02/Vue%E6%8F%92%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="插件基本介绍"><a href="#插件基本介绍" class="headerlink" title="插件基本介绍"></a>插件基本介绍</h2><blockquote><p>插件本质其实就是一个对象,但是Vue要求这个对象必须包含<code>install</code>函数。</p></blockquote><ol><li>创建插件<br>创建<code>plugins.js</code>文件夹,用于存放插件,<code>install</code>函数是必写的<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插件文件</span></span><br><span class="line"><span class="comment">// 创建插件</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="title function_">install</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;hello world&#x27;</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><blockquote><p><code>install()</code>方法,install的第一个参数是Vue,后面的参数,为vue使用者传递的数据。可以通过Vue为组件添加全局过滤器,全局指令,配置全局混入以及给Vue原型上添加方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">install</span>(<span class="params">Vue</span>)&#123;</span><br><span class="line">    <span class="comment">// 全局过滤器 </span></span><br><span class="line">    <span class="title class_">Vue</span>.<span class="title function_">filter</span>(...)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 全局自定义指令</span></span><br><span class="line">    <span class="title class_">Vue</span>.<span class="title function_">directive</span>(...)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 混入</span></span><br><span class="line">    <span class="title class_">Vue</span>.<span class="title function_">mixins</span>(...)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 给Vue原型上添加方法</span></span><br><span class="line">    <span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">hello</span> = <span class="function">()=&gt;</span>&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Hello world&#x27;</span>)&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p></blockquote><ol><li><p>在入口文件中,引入插件</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> plugins <span class="keyword">from</span> <span class="string">&#x27;./plugins&#x27;</span></span><br></pre></td></tr></table></figure></li><li><p>在创建vm之前,使用插件</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(plugins)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Express框架基本使用</title>
       <link href="/2025/02/02/Express%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
       <url>/2025/02/02/Express%E6%A1%86%E6%9E%B6%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
@@ -109,8 +136,6 @@
             
             <tag> Vue </tag>
             
-            <tag> Vue2 </tag>
-            
         </tags>
       
     </entry>
@@ -138,8 +163,6 @@
             
             <tag> Vue </tag>
             
-            <tag> Vue2 </tag>
-            
         </tags>
       
     </entry>
@@ -166,8 +189,6 @@
             <tag> Web前端 </tag>
             
             <tag> Vue </tag>
-            
-            <tag> Vue2 </tag>
             
         </tags>
       
@@ -221,8 +242,6 @@
             
             <tag> Vue </tag>
             
-            <tag> Vue2 </tag>
-            
         </tags>
       
     </entry>
@@ -250,8 +269,6 @@
             
             <tag> Vue </tag>
             
-            <tag> Vue2 </tag>
-            
         </tags>
       
     </entry>
@@ -278,8 +295,6 @@
             <tag> Web前端 </tag>
             
             <tag> Vue </tag>
-            
-            <tag> Vue2 </tag>
             
         </tags>
       
