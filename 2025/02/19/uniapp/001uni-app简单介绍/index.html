@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>uni-app简单介绍（一） | 亢苏公のBlog</title><meta name="author" content="亢苏公"><meta name="copyright" content="亢苏公"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="声明本文档编写参考如下教程   uni-app官网：什么是uni-app  CSDN-2301_79098879帖子：uni-app入门学习  CSDN-g1167389592504帖子：uni-app快速入门笔记   uni-app介绍 uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、Web（响应式）、以及各种小程序（微信&#x2F;支">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uni-app简单介绍（一）">
+<meta property="og:url" content="http://xiaohu.kina.ink/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="亢苏公のBlog">
+<meta property="og:description" content="声明本文档编写参考如下教程   uni-app官网：什么是uni-app  CSDN-2301_79098879帖子：uni-app入门学习  CSDN-g1167389592504帖子：uni-app快速入门笔记   uni-app介绍 uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、Web（响应式）、以及各种小程序（微信&#x2F;支">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://tuch.xiaohuzg.xyz/img/008.webp">
+<meta property="article:published_time" content="2025-02-19T15:10:02.465Z">
+<meta property="article:modified_time" content="2025-02-22T14:49:52.593Z">
+<meta property="article:author" content="亢苏公">
+<meta property="article:tag" content="uni-app">
+<meta property="article:tag" content="小程序开发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tuch.xiaohuzg.xyz/img/008.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "uni-app简单介绍（一）",
+  "url": "http://xiaohu.kina.ink/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/",
+  "image": "http://tuch.xiaohuzg.xyz/img/008.webp",
+  "datePublished": "2025-02-19T15:10:02.465Z",
+  "dateModified": "2025-02-22T14:49:52.593Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "亢苏公",
+      "url": "http://xiaohu.kina.ink/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="http://tuch.xiaohuzg.xyz/img/Blog_favicon.ico"><link rel="canonical" href="http://xiaohu.kina.ink/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"top-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'uni-app简单介绍（一）',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-footer-beautify@1.0.0/lib/runtime.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(http://tuch.xiaohuzg.xyz/img/DayHome.webp);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-folder-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-folder-open"></i><span> 说说</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list hide"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(http://tuch.xiaohuzg.xyz/img/008.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">亢苏公のBlog</span></a><a class="nav-page-title" href="/"><span class="site-name">uni-app简单介绍（一）</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-folder-open"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-folder-open"></i><span> 说说</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list hide"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">uni-app简单介绍（一）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-19T15:10:02.465Z" title="发表于 2025-02-19 23:10:02">2025-02-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-22T14:49:52.593Z" title="更新于 2025-02-22 22:49:52">2025-02-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/uni-app/">uni-app</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-02-22 22:49:52&quot;}" hidden></div><h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><div class="note blue icon-padding simple"><i class="note-icon fas fa-bullhorn"></i><p>本文档编写参考如下教程</p>
+</div>
+<ul>
+<li><p>uni-app官网：<a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/">什么是uni-app</a></p>
+</li>
+<li><p>CSDN-2301_79098879帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/2301_79098879/article/details/137703572">uni-app入门学习</a></p>
+</li>
+<li><p>CSDN-g1167389592504帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/g1167389592504/article/details/125196548">uni-app快速入门笔记</a></p>
+</li>
+</ul>
+<h2 id="uni-app介绍"><a href="#uni-app介绍" class="headerlink" title="uni-app介绍"></a>uni-app介绍</h2><blockquote>
+<p>uni-app 是一个使用 Vue.js 开发所有前端应用的框架，开发者编写一套代码，可发布到iOS、Android、Web（响应式）、以及各种小程序（微信/支付宝/百度/头条/飞书/QQ/快手/钉钉/淘宝）、快应用等多个平台。即使不跨域，uni-app也是更好的小程序开发工具。</p>
+</blockquote>
+<h2 id="编辑器选择"><a href="#编辑器选择" class="headerlink" title="编辑器选择"></a>编辑器选择</h2><ul>
+<li><p>HBuilderX编辑器（首选）</p>
+</li>
+<li><p>VScode</p>
+</li>
+</ul>
+<blockquote>
+<p>HBuilderX是通用的前端开发工具，并且为uni-app做了特别强化，是uni-app的首选编辑器。HBuilderX下载地址：<a target="_blank" rel="noopener" href="https://www.dcloud.io/hbuilderx.html"></a></p>
+</blockquote>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><p>一个uni-app项目其实就是一个Vue项目,通过HBuilderX快速创建一个uni-app项目。项目创建完成后,可以看见项目里面有一些基础的文件夹和文件,如果有Vue基础就可以发现这个项目就类似于一个Vue项目</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li>pages：页面存放文件夹<ul>
+<li>index：index页面文件夹<ul>
+<li>index.vue：index页面文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>static：存放应用引用的本地静态资源（如图片、视频等）的目录，注意：静态资源都应存放于此目录</li>
+<li>App.vue：根组件文件,所有页面都是在App.vue下进行切换的,是页面入口文件,可以调用应用的生命周期函数</li>
+<li>index.html：主页页面文件</li>
+<li>main.js：项目入口文件,初始化vue实例并使用需要的插件</li>
+<li>manifest.json：文件应用的配置文件,用于指定应用的名称,图标,权限等</li>
+<li>pages.json：用来对uni-app进行全局配置,决定页面文件的路径,窗口样式,原生导航栏,底部的原生tabbar等</li>
+<li>uni.promisify.adaptor.js：文件提供了适配器函数,使得开发者能够以Promise的形式来调用微信小程序的API</li>
+<li>uni.scss：文件的用途是为了方便整体控制应用的风格。比如按钮颜色,边框风格,uni.scss文件里预置了一批scss变量预置。</li>
+</ul>
+<h3 id="static目录"><a href="#static目录" class="headerlink" title="static目录"></a>static目录</h3><blockquote>
+<p>uni-app编译器根据pages.json扫描需要编译的页面,并且引入js,css合并打包文件。对于本地的图片,字体,视频,文件等资源,如可识别,也会将这些文件打包进去,但是如果这些资源以变量的方式引用,如：<code>&lt;image :src=&quot;url&quot;&gt;&lt;/image&gt;</code>,甚至更复杂的函数计算,编译器无法解析。那么编译器会将整个static整个复制到编译包内,这样运行的时候就可以获取这些资源。</p>
+</blockquote>
+<ul>
+<li>注意事项：<ul>
+<li>如果static内有一些没有用的废文件,也会被打包到编译包,造成体积增大。</li>
+<li>非static目录下的文件（vue组件,js,css等）只有被引用时,才会被打包编译。</li>
+<li>css,less/scss等资源不要放在static内,建议这些资源放在自建的common目录下。</li>
+<li>太大的static目录和太多的文件,会造成App安装后第一次启动变慢。</li>
+</ul>
+</li>
+</ul>
+<h2 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h2><ul>
+<li>页面文件遵循Vue单文件组件(SFC)规范</li>
+<li>组件标签接近小程序规范</li>
+<li>接口能力(js API)接近微信小程序规范,但是需要把<code>wx</code>前缀替换为<code>uni</code></li>
+<li>数据绑定与事件处理机制接近Vue.js,同时补充了App及生命周期</li>
+<li>需要多端运行,尽量使用flex布局</li>
+</ul>
+<h2 id="简单配置"><a href="#简单配置" class="headerlink" title="简单配置"></a>简单配置</h2><ol>
+<li>全局配置globalStyle【pages.json文件中】</li>
+</ol>
+<details class="folding-tag" orange><summary> globalStyle配置 </summary>
+              <div class='content'>
+              <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局配置</span></span><br><span class="line"><span class="string">&quot;globalStyle&quot;</span>: &#123;</span><br><span class="line">	<span class="comment">// 导航栏标题颜色</span></span><br><span class="line">	<span class="string">&quot;navigationBarTextStyle&quot;</span>: <span class="string">&quot;black&quot;</span>,</span><br><span class="line">	<span class="comment">// 导航栏文字</span></span><br><span class="line">	<span class="string">&quot;navigationBarTitleText&quot;</span>: <span class="string">&quot;uni-app&quot;</span>,</span><br><span class="line">	<span class="comment">// 导航栏背景色</span></span><br><span class="line">	<span class="string">&quot;navigationBarBackgroundColor&quot;</span>: <span class="string">&quot;#F8F8F8&quot;</span>,</span><br><span class="line">	<span class="comment">// (下拉)窗口背景颜色</span></span><br><span class="line">	<span class="string">&quot;backgroundColor&quot;</span>: <span class="string">&quot;#F8F8F8&quot;</span>,</span><br><span class="line">	<span class="comment">// 页面能否下拉</span></span><br><span class="line">	<span class="string">&quot;enablePullDownRefresh&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">	<span class="comment">// 下拉loading样式</span></span><br><span class="line">	<span class="string">&quot;backgroundTextStyle&quot;</span>: <span class="string">&quot;light&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<ol>
+<li>页面配置pages(pages数组配置内,每一个对象就是一个页面)【配置在pages.json中】</li>
+</ol>
+<details class="folding-tag" orange><summary> pages配置 </summary>
+              <div class='content'>
+              <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;pages&quot;</span>: [ </span><br><span class="line">	<span class="comment">//pages数组中第一项表示应用启动页，参考：https://uniappdcloud.io/collocation/pages</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 页面路由</span></span><br><span class="line">		<span class="string">&quot;path&quot;</span>: <span class="string">&quot;pages/index/index&quot;</span>,</span><br><span class="line">		<span class="string">&quot;style&quot;</span>: &#123;</span><br><span class="line">			<span class="comment">// 导航栏标题</span></span><br><span class="line">			<span class="string">&quot;navigationBarTitleText&quot;</span>: <span class="string">&quot;uni-app&quot;</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;path&quot;</span> : <span class="string">&quot;pages/msg/msg&quot;</span>,</span><br><span class="line">		<span class="comment">// 页面配置覆盖全局</span></span><br><span class="line">		<span class="string">&quot;style&quot;</span> : </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 导航栏标题</span></span><br><span class="line">			<span class="string">&quot;navigationBarTitleText&quot;</span> : <span class="string">&quot;msg&quot;</span>,</span><br><span class="line">			<span class="comment">// 导航栏标题颜色</span></span><br><span class="line">			<span class="string">&quot;navigationBarTextStyle&quot;</span>: <span class="string">&quot;black&quot;</span>,</span><br><span class="line">			<span class="comment">// 导航栏背景色</span></span><br><span class="line">			<span class="string">&quot;navigationBarBackgroundColor&quot;</span>: <span class="string">&quot;#f8f8f8&quot;</span>,</span><br><span class="line">			<span class="comment">// h5特有样式(不影响微信小程序)</span></span><br><span class="line">			<span class="string">&quot;h5&quot;</span>: &#123;</span><br><span class="line">				<span class="string">&quot;pullToRefresh&quot;</span>: &#123;</span><br><span class="line">					<span class="string">&quot;color&quot;</span>: <span class="string">&quot;#666&quot;</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<ol>
+<li>底部菜单栏tabBar配置【配置在pages.json中】</li>
+</ol>
+<details class="folding-tag" orange><summary> tabBar配置 </summary>
+              <div class='content'>
+              <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;tabBar&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// 设置小程序底部导航栏</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 未选中的文字颜色</span></span><br><span class="line">    <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#666&quot;</span>,</span><br><span class="line">    <span class="comment">// 选中的文字颜色</span></span><br><span class="line">    <span class="string">&quot;selectedColor&quot;</span>: <span class="string">&quot;#000&quot;</span>,</span><br><span class="line">    <span class="comment">// tab背景颜色</span></span><br><span class="line">    <span class="string">&quot;backgroundColor&quot;</span>: <span class="string">&quot;#&quot;</span>,</span><br><span class="line">    <span class="comment">// tab背景框颜色</span></span><br><span class="line">    <span class="string">&quot;borderStyle&quot;</span>: <span class="string">&quot;#fff&quot;</span>,</span><br><span class="line">    <span class="comment">// tab位置(仅支持微信小程序)</span></span><br><span class="line">    <span class="string">&quot;position&quot;</span>: <span class="string">&quot;top&quot;</span>,</span><br><span class="line">    <span class="comment">// tabBar中的list</span></span><br><span class="line">    <span class="string">&quot;list&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="comment">// 菜单名</span></span><br><span class="line">                <span class="string">&quot;text&quot;</span>: <span class="string">&quot;首页&quot;</span>,</span><br><span class="line">                <span class="comment">// 跳转地址</span></span><br><span class="line">                <span class="string">&quot;pagePath&quot;</span>: <span class="string">&quot;pages/index/index&quot;</span>,</span><br><span class="line">                <span class="comment">// 未选中时的icon</span></span><br><span class="line">                <span class="string">&quot;iconPath&quot;</span>: <span class="string">&quot;#&quot;</span>,</span><br><span class="line">                <span class="comment">// 选中时的icon</span></span><br><span class="line">                <span class="string">&quot;selectedIconPath&quot;</span>: <span class="string">&quot;#&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">                <span class="comment">// 菜单名</span></span><br><span class="line">                <span class="string">&quot;text&quot;</span>: <span class="string">&quot;我的&quot;</span>,</span><br><span class="line">                <span class="comment">// 跳转地址</span></span><br><span class="line">                <span class="string">&quot;pagePath&quot;</span>: <span class="string">&quot;pages/msg/msg&quot;</span>,</span><br><span class="line">                <span class="comment">// 未选中时的icon</span></span><br><span class="line">                <span class="string">&quot;iconPath&quot;</span>: <span class="string">&quot;#&quot;</span>,</span><br><span class="line">                <span class="comment">// 选中时的icon</span></span><br><span class="line">                <span class="string">&quot;selectedIconPath&quot;</span>: <span class="string">&quot;#&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<ol>
+<li>condition模式配置</li>
+</ol>
+<details class="folding-tag" orange><summary> condition配置 </summary>
+              <div class='content'>
+              <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// condition模式配置</span></span><br><span class="line"><span class="string">&quot;condition&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// 设置激活页面的索引</span></span><br><span class="line">    <span class="string">&quot;current&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="comment">// 页面列表,配置页面</span></span><br><span class="line">    <span class="string">&quot;list&quot;</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 页面名称</span></span><br><span class="line">            <span class="string">&quot;name&quot;</span>:<span class="string">&quot;msg&quot;</span>,</span><br><span class="line">            <span class="comment">// 页面路径</span></span><br><span class="line">            <span class="string">&quot;path&quot;</span>:<span class="string">&quot;pages/msg/msg&quot;</span>,</span><br><span class="line">            <span class="comment">// 页面参数</span></span><br><span class="line">            <span class="string">&quot;query&quot;</span>:<span class="string">&quot;id=80&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+              </div>
+            </details>
+<h2 id="常用组件-标签"><a href="#常用组件-标签" class="headerlink" title="常用组件(标签)"></a>常用组件(标签)</h2><ol>
+<li>view视图容器</li>
+</ol>
+<blockquote>
+<p>可以将他理解为传统html中的div,如果使用nvue,包裹文字应该使用<text>组件</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>uni-app简单介绍（一）</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="http://xiaohu.kina.ink/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">http://xiaohu.kina.ink/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a"><h>作者</h><div class="post-copyright-cc-info"><h>亢苏公</h></div></div><div class="post-copyright-c"><h>发布于</h><div class="post-copyright-cc-info"><h>2025-02-19</h></div></div><div class="post-copyright-u"><h>更新于</h><div class="post-copyright-cc-info"><h>2025-02-22</h></div></div><div class="post-copyright-c"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY-NC-SA 4.0" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/uni-app/">uni-app</a><a class="post-meta__tags" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/">小程序开发</a></div><div class="post-share"><div class="social-share" data-image="http://tuch.xiaohuzg.xyz/img/008.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/19/Vue/021Vue--%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/" title="Vue--全局事件总线（二一）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/005.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Vue--全局事件总线（二一）</div></div><div class="info-2"><div class="info-item-1">...</div></div></div></a><a class="pagination-related" href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/" title="Vue--消息订阅与发布（二二）"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/009.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Vue--消息订阅与发布（二二）</div></div><div class="info-2"><div class="info-item-1">声明本文档编写参考如下教程   尚硅谷VUE讲师张天禹：尚硅谷Vue2.0+Vue3.0全套教程丨vue.js从入门到精通  什么是消息订阅与发布 消息的订阅与发布也是一种实现组件之间通信的方式,与全局事件总线一样,也可以实现任意组件之间的通信。两个组件之间,收数据的组件订阅消息,发数据的组件发布消息。（消息的订阅与发布使用原生js的方式比较麻烦,这边给大家推荐几个好用的库）  pubsub-js 安装pubsub-js库  1npm i pubsub-js  引入（在要订阅消息与发布消息的两个组件之中引入即可）  12// 引入pubsub-js库import pubsub from &#x27;pubsub-js&#x27;  订阅消息（在要收数据的组件中订阅消息）  1234567// 订阅消息mounted()&#123;    // 订阅消息    this.pubId = pubsub.subscribe(&#x27;getStudentNameSub&#x27;,(msgName,data)=&gt;&#123;       ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/head_img.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">亢苏公</div><div class="author-info-description">我亦无他,唯手熟尔!!!</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/xxxxx" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#uni-app%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.</span> <span class="toc-text">uni-app介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E9%80%89%E6%8B%A9"><span class="toc-number">3.</span> <span class="toc-text">编辑器选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.</span> <span class="toc-text">项目介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95"><span class="toc-number">5.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#static%E7%9B%AE%E5%BD%95"><span class="toc-number">5.1.</span> <span class="toc-text">static目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="toc-number">6.</span> <span class="toc-text">开发规范</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%85%8D%E7%BD%AE"><span class="toc-number">7.</span> <span class="toc-text">简单配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6-%E6%A0%87%E7%AD%BE"><span class="toc-number">8.</span> <span class="toc-text">常用组件(标签)</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/" title="Vue--消息订阅与发布（二二）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/009.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue--消息订阅与发布（二二）"/></a><div class="content"><a class="title" href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/" title="Vue--消息订阅与发布（二二）">Vue--消息订阅与发布（二二）</a><time datetime="2025-02-22T08:50:25.630Z" title="发表于 2025-02-22 16:50:25">2025-02-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" title="uni-app简单介绍（一）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/008.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="uni-app简单介绍（一）"/></a><div class="content"><a class="title" href="/2025/02/19/uniapp/001uni-app%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" title="uni-app简单介绍（一）">uni-app简单介绍（一）</a><time datetime="2025-02-19T15:10:02.465Z" title="发表于 2025-02-19 23:10:02">2025-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/19/Vue/021Vue--%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/" title="Vue--全局事件总线（二一）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/005.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue--全局事件总线（二一）"/></a><div class="content"><a class="title" href="/2025/02/19/Vue/021Vue--%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/" title="Vue--全局事件总线（二一）">Vue--全局事件总线（二一）</a><time datetime="2025-02-19T07:22:43.010Z" title="发表于 2025-02-19 15:22:43">2025-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/19/Vue/020Vue--%E7%BB%84%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/" title="Vue--组件自定义事件（二十）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/007.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue--组件自定义事件（二十）"/></a><div class="content"><a class="title" href="/2025/02/19/Vue/020Vue--%E7%BB%84%E4%BB%B6%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/" title="Vue--组件自定义事件（二十）">Vue--组件自定义事件（二十）</a><time datetime="2025-02-19T01:54:19.125Z" title="发表于 2025-02-19 09:54:19">2025-02-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/16/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/" title="浏览器的本地存储"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/010.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="浏览器的本地存储"/></a><div class="content"><a class="title" href="/2025/02/16/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/" title="浏览器的本地存储">浏览器的本地存储</a><time datetime="2025-02-16T11:48:46.467Z" title="发表于 2025-02-16 19:48:46">2025-02-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2025 By 亢苏公</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script defer src="/js/cursor.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --> <script data-pjax>if(document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+    var parent = document.getElementById('recent-posts');
+    var child = '<div class="recent-post-item" style="width:100%;height: auto"><div id="catalog_magnet"><div class="magnet_item"><a class="magnet_link" href="http://xiaohu.kina.ink/categories/博客/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">📚 Hexo博客 (2)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><div class="magnet_item"><a class="magnet_link" href="http://xiaohu.kina.ink/categories/Vue/"><div class="magnet_link_context" style=""><span style="font-weight:500;flex:1">👩‍💻 Vue (11)</span><span style="padding:0px 4px;border-radius: 8px;"><i class="fas fa-arrow-circle-right"></i></span></div></a></div><a class="magnet_link_more"  href="http://xiaohu.kina.ink/categories" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a></div></div>';
+    console.log('已挂载magnet')
+    parent.insertAdjacentHTML("afterbegin",child)}
+     </script><style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(50% - 5px);background: #f2f2f2;margin-bottom: 10px;border-radius: 8px;transition: all 0.2s ease-in-out;}.magnet_item:hover{background: #b30070}.magnet_link_more{color:#555}.magnet_link{color:black}.magnet_link:hover{color:white}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;font-size:16px;transition: all 0.2s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>
+    <style></style><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var qweather_key = '54ec3437211747b2928e982f481406f9';
+  var gaud_map_key = '0362e71e8175839de8538081c2385d1e';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '113.34532,23.15624';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="https://dashboard.4everland.org/" style="margin-inline:5px" data-title="本站采用多线部署，备用线路托管于4EVERLAND" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Hosted-4EVERLAND-22DDDD?style=flat&amp;logo=IPFS" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/01/26/Butterfly外挂标签/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/020.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-01-26</span><a class="blog-slider__title" href="2025/01/26/Butterfly外挂标签/" alt="">Butterfly标签外挂</a><div class="blog-slider__text">Markdown外挂标签格式</div><a class="blog-slider__button" href="2025/01/26/Butterfly外挂标签/" alt="">详情   </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" href="2025/01/26/Hexo博客部署/" alt=""><img width="48" height="48" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://tuch.xiaohuzg.xyz/img/017.webp" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-01-26</span><a class="blog-slider__title" href="2025/01/26/Hexo博客部署/" alt="">Hexo搭建博客</a><div class="blog-slider__text">使用Hexo搭建个人博客,免费,无需服务器</div><a class="blog-slider__button" href="2025/01/26/Hexo博客部署/" alt="">详情   </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/miku.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body></html>
