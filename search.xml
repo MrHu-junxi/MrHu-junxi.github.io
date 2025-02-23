@@ -4,6 +4,58 @@
   
     
     <entry>
+      <title>前端不同屏幕尺寸自适应,移动端适配</title>
+      <link href="/2025/02/23/Web/001%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/"/>
+      <url>/2025/02/23/Web/001%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D/</url>
+      
+        <content type="html"><![CDATA[<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><div class="note blue icon-padding simple"><i class="note-icon fas fa-bullhorn"></i><p>本文档编写参考如下教程</p></div><ul><li>B站up【三十的前端课】：<a href="https://www.bilibili.com/video/BV1PC411372R/?spm_id_from=333.337.search-card.all.click">吃透前端不同屏幕尺寸自适应，大屏移动端开发必会</a></li></ul><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><ol><li>布局更多的使用flex,尺寸使用rem,vw,vh为单位。</li><li>如果是根据不同屏幕需要有不同的布局,一般通过检测屏幕尺寸换不同的站点或者媒体查询使用两套css</li></ol><h2 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h2><h3 id="rem单位简单介绍"><a href="#rem单位简单介绍" class="headerlink" title="rem单位简单介绍"></a>rem单位简单介绍</h3><blockquote><p>rem以html字体大小为1rem的大小,比如说html字体大小为16px,则1rem就等于16px。rem之所以可以自适应,其实是通过js去重新设置html的字体大小</p></blockquote><ul><li>计算方式:html字体大小 = (js获取到的当前设备宽度/设计图宽度) * 设计图宽度下的rem大小</li></ul><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><ul><li><p>通过媒体查询来设置不同屏幕的html的fontsize大小</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">320</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">360</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">18px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">480</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">22px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">560</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">26px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">640</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">30px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">720</span>) &#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">34px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>缺点:</p><ul><li>需要针对不同尺寸编写大量的媒体查询</li><li>如果动态改变尺寸,不会实时的进行更新</li></ul></li></ul><h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><ul><li><p>用js动态获取设备宽度</p>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.设备宽度(包含滚动条)</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">WinWidth</span> = <span class="variable language_">window</span>.<span class="property">screen</span>.<span class="property">availWidth</span></span><br><span class="line"><span class="comment">// 2. 设备宽度(不包含滚动条)</span></span><br><span class="line"><span class="comment">// 移动端一般会给最外边的盒子设置最大宽度为750px,所以这边我们也需要设置以下,取两个变量中的较小值</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">DocWidth</span> = <span class="title class_">Math</span>.<span class="title function_">min</span>(<span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientWidth</span>,<span class="number">750</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fontsize = (<span class="title class_">DocWidth</span>/<span class="number">750</span>)*<span class="number">16</span></span><br><span class="line"><span class="comment">// 设置html大小</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">style</span>.<span class="property">fontSize</span> = fontsize+<span class="string">&quot;px&quot;</span></span><br></pre></td></tr></table></figure></li></ul><h3 id="vh-vw单位简单介绍"><a href="#vh-vw单位简单介绍" class="headerlink" title="vh/vw单位简单介绍"></a>vh/vw单位简单介绍</h3><blockquote><p>1vw = 1%视口宽度,1vh = 1%视口高度。假设屏幕高宽是750*1200,那么1vh就是7.5px,1vw就是12px。使用vw做单位无需做计算,因为vw会自动根据屏幕宽度变化,vh一般用来做全屏设计。</p></blockquote><h2 id="方案二【仅仅是一些布局的不同】"><a href="#方案二【仅仅是一些布局的不同】" class="headerlink" title="方案二【仅仅是一些布局的不同】"></a>方案二【仅仅是一些布局的不同】</h2><blockquote><p>通过媒体查询,检测屏幕大小,然后使用两套不同的css</p></blockquote><pre><code><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 小于960px移动端 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">media</span>=<span class="string">&quot;screen and (min-width:1px) and (max-width:959px)&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/iphone.css&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 大于960px,pc端 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">media</span>=<span class="string">&quot;screen and (min-width:960px)&quot;</span> <span class="attr">href</span>=<span class="string">&quot;./css/pc.css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure></code></pre><h2 id="方案三【变动太大】"><a href="#方案三【变动太大】" class="headerlink" title="方案三【变动太大】"></a>方案三【变动太大】</h2><blockquote><p>当用户进入网站时,先统一进入一个站点,然后通过js检测屏幕的宽度,是否大于一个960px【因为PC端与移动端的区分点一般就是960px】,比如说如果大于960px就让用户跳转pc端站点,小于960就跳转到移动端站点</p></blockquote><h2 id="一些注意事项"><a href="#一些注意事项" class="headerlink" title="一些注意事项"></a>一些注意事项</h2><ol><li>关于边距的处理:<ul><li>靠左靠右这种的一般使用flex布局</li><li>顶开小部分距离使用rem,vw</li></ul></li><li>图片一般都是设置宽度不设置高度,防止图片变形,但是如果屏幕跨度过大,可能导致图片大的很夸张,这时可以考虑设置最大宽度,然后居中,避免拉长</li><li>在一些大屏可视化项目里,界面必须是满屏幕的,不能溢出不能短,但这时通过f11切换全屏,rem,vw不会变化,所以这种项目有的高度可以考虑用vh来做</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端重点 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue--动画与过渡效果（二三）</title>
+      <link href="/2025/02/22/Vue/023Vue--%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/"/>
+      <url>/2025/02/22/Vue/023Vue--%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/</url>
+      
+        <content type="html"><![CDATA[<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><div class="note blue icon-padding simple"><i class="note-icon fas fa-bullhorn"></i><p>本文档编写参考如下教程</p></div><ul><li>尚硅谷VUE讲师张天禹：<a href="https://www.bilibili.com/video/BV1Zy4y1K7SH/?spm_id_from=333.337.search-card.all.click">尚硅谷Vue2.0+Vue3.0全套教程丨vue.js从入门到精通</a></li></ul><h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><blockquote><p>在Vue中,我们有一种新的添加动画的方式,是Vue帮我们新封装的</p></blockquote><ol><li><p>用以前的方式创建一个简单的动画效果</p> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> show &#123;</span><br><span class="line">    <span class="selector-tag">from</span>&#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">100%</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">to</span>&#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0px</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>定义两个类,使用这个动画</p> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 进入时激活样式 */</span></span><br><span class="line"><span class="selector-class">.v-enter-active</span>&#123;</span><br><span class="line">    <span class="attribute">animation</span>: show <span class="number">1s</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 离开时激活样式 */</span></span><br><span class="line"><span class="selector-class">.v-leave-active</span>&#123;</span><br><span class="line">    <span class="comment">/* reverse意为反转 */</span></span><br><span class="line">    <span class="attribute">animation</span>: show <span class="number">1s</span> reverse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>给想添加动画的标签用<code>&lt;transition&gt;</code>标签包裹起来,<transition>标签可以添加一些属性,但是我们给使用动画的样式的类取名时就不能随便取名了,而是要按照vue的取名规则:比如我这边一个进入与离开的动画,需要取名’.v-enter-active’和’.v-leave-active’,否则动画就不会生效。</p><ul><li>name:<br>  当我们添加了name属性后,那我们在给使用动画的样式的类取名时,就需要使用name-动画-active的方式</li><li><p>appear: true || false<br>  当我们第一次进入浏览器时,就会使用动画效果</p><p><strong><em>transition标签最终渲染在浏览器上时,不会显示</em></strong></p></li></ul></li></ol><blockquote><p>总结就是只要我们定义好动画以及使用动画的样式的类名,并且名字按照vue规定的来,vue就会保证在transition标签内的元素产生变化时,帮我们添加上动画效果。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Web前端 </tag>
+            
+            <tag> Vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue--消息订阅与发布（二二）</title>
       <link href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/"/>
       <url>/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/</url>
@@ -180,9 +232,9 @@
       
         <tags>
             
-            <tag> 博客 </tag>
-            
             <tag> 后端 </tag>
+            
+            <tag> 博客 </tag>
             
         </tags>
       
@@ -207,11 +259,11 @@
       
         <tags>
             
-            <tag> 后端 </tag>
-            
             <tag> Nodejs </tag>
             
             <tag> Express </tag>
+            
+            <tag> 后端 </tag>
             
         </tags>
       
@@ -290,9 +342,9 @@
       
         <tags>
             
-            <tag> 后端 </tag>
-            
             <tag> Nodejs </tag>
+            
+            <tag> 后端 </tag>
             
         </tags>
       
