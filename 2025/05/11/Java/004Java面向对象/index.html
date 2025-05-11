@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DellByte">
+  <meta name="keywords" content="资源分享">
+  
+    <meta name="description" content="声明             本文档编写参考如下教程             黑马程序员教程：黑马程序员Java零基础视频教程_上部(Java入门，含斯坦福大学练习题+力扣算法题  菜鸟教程：Java教程  CSDN TISNIW 帖子：Java——面向对象  CSDN 陈一Tender 帖子：Java面向对象编程  CSDN Lizhihao＿ 帖子：JAVA-类和对象 （超详细）  CSDN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java(四)面向对象与类">
+<meta property="og:url" content="http://example.com/2025/05/11/Java/004Java%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="DellByte">
+<meta property="og:description" content="声明             本文档编写参考如下教程             黑马程序员教程：黑马程序员Java零基础视频教程_上部(Java入门，含斯坦福大学练习题+力扣算法题  菜鸟教程：Java教程  CSDN TISNIW 帖子：Java——面向对象  CSDN 陈一Tender 帖子：Java面向对象编程  CSDN Lizhihao＿ 帖子：JAVA-类和对象 （超详细）  CSDN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-10T16:22:14.851Z">
+<meta property="article:modified_time" content="2025-04-20T06:20:42.552Z">
+<meta property="article:author" content="DellByte">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Java(四)面向对象与类 - DellByte</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>DellByte</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://tuch.xiaohuzg.xyz/img/Home.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Java(四)面向对象与类"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-11 00:22" pubdate>
+          2025年5月11日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Java(四)面向对象与类</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><div class="note note-blue fas fa-bullhorn modern">
+            <p>本文档编写参考如下教程</p>
+          </div>
+<ul>
+<li><p>黑马程序员教程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17F411T7Ao/?spm_id_from=333.337.top_right_bar_window_custom_collection.content.click">黑马程序员Java零基础视频教程_上部(Java入门，含斯坦福大学练习题+力扣算法题</a></p>
+</li>
+<li><p>菜鸟教程：<a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-basic-datatypes.html">Java教程</a></p>
+</li>
+<li><p>CSDN TISNIW 帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lqt214133/article/details/133123226">Java——面向对象</a></p>
+</li>
+<li><p>CSDN 陈一Tender 帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wxhslwjc122333/article/details/146399969">Java面向对象编程</a></p>
+</li>
+<li><p>CSDN Lizhihao＿ 帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Lizhihao_/article/details/141526635">JAVA-类和对象 （超详细）</a></p>
+</li>
+<li><p>CSDN Stewie Lee 帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/stewie6/article/details/143482361">Java——接口</a></p>
+</li>
+</ul>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>Java是一门<code>纯面向对象语言</code>,在面向对象的世界里,一切皆为对象。面向对象是解决问题的一种思路,主要通过对象之间的交互完成一件事情。<br>面向对象的程序是由对象组成的,每个对象包含<code>对用户公开的特定功能</code>和<code>隐藏的实现部分</code>。Java中有很多对象来自<code>标准库</code>,还有一部分由自己定义。从根本上说只要对象能够满足要求,就不必关心其功能实现过程。在<code>OOP</code>中不必关心对象的具体实现,只需其能满足用户需求即可。<br>以面向对象的方式进行处理,就不需要关注工作执行的过程。通过对象之间的交互就可以完成一件事情。面向对象编程的本质是以<code>类的方式</code>组织代码,以对象组织(封装)数据。</p>
+<hr>
+<h3 id="面向对象与面向过程"><a href="#面向对象与面向过程" class="headerlink" title="面向对象与面向过程"></a>面向对象与面向过程</h3><p><code>面向对象</code>与<code>面向过程</code>都是对项目分析,设计,开发的一种思想,它指导人们以不同的方式分析,设计和开发软件。</p>
+<ol>
+<li><p><code>面向过程</code>:面向过程适合简单,不需要协作的事务,重点关注执行的过程。面向过程时,需要思考怎样<code>按步骤实现</code>并将步骤对应为方法,一步步完成项目。例如把大象装进冰箱内,首先需要打开冰箱,然后把大象放进去,最后关上冰箱。</p>
+</li>
+<li><p><code>面向对象</code>:当思考比较复杂的设计任务时,会发现面对过程的思想比较复杂,此时面向对象的思想就应运而生了。<code>面向对象(OOP)</code>更契合人的思维模式。比如使用面向对象的思维去造车,就会想车是由轮胎,发动机,座椅,玻璃…组成的,这样只需要将这些部件组装起来就行,整个过程由这些对象之间的交互完成,而不需要关注那些对象之中的过程。因此面向对象是从整体去分析整个系统。</p>
+</li>
+</ol>
+<p>面向对象与面向过程并不是编程语言,而是解决问题的一种思维方式。其中面向过程是一种执行者思维,面向对象是一种设计者思维,<code>面向对象离不开面向过程</code>。面向过程适合解决简单问题,面向对象适合解决困难的需要协作的问题。</p>
+<h3 id="面向对象编程快速入门"><a href="#面向对象编程快速入门" class="headerlink" title="面向对象编程快速入门"></a>面向对象编程快速入门</h3><ol>
+<li>面向对象的三个特征:<code>封装</code>,<code>继承</code>,<code>多态</code>。</li>
+<li>创建一个一个的对象,将数据交给对象,在调用对象的方法来完成对数据的处理。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 定义一个类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-comment">// 类内的属性</span><br>    String name;<br>    <span class="hljs-type">int</span> age;<br>    String sex;<br><br>    <span class="hljs-comment">// 类内的方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">hello</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;hello,My name is&quot;</span> + name);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Main函数中....</span><br><br><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-comment">// 导包</span><br><span class="hljs-keyword">import</span> java.util.Random;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 实用类创建对象,也叫实例化对象</span><br>        <span class="hljs-type">Student</span> <span class="hljs-variable">stu</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br><br>        <span class="hljs-comment">// 给对象添加属性值</span><br>        stu.name = <span class="hljs-string">&quot;小明&quot;</span>;<br>        stu.age = <span class="hljs-number">18</span>;<br>        stu.sex = <span class="hljs-string">&quot;男&quot;</span>;<br><br>        <span class="hljs-comment">// 使用对象调用类内的方法</span><br>        stu.hello();<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="深刻认识面向对象"><a href="#深刻认识面向对象" class="headerlink" title="深刻认识面向对象"></a>深刻认识面向对象</h3><ol>
+<li>面向对象编程的好处:<ol>
+<li>凡事找对象的编程套路,更加符合人类思维习惯,编程也更加直观。</li>
+</ol>
+</li>
+<li>对象是什么?如何创建?<ol>
+<li>对象的本质就是一种特殊的<code>数据结构</code>(如果你学过<code>js</code>,一定对对象类型很熟悉,<code>obj=&#123;name:&#39;小明&#39;,age:18&#125;</code>,其实与这个对象差不多,只是现在说的对象更底层一点)</li>
+<li>对象是用类new出来的,有类就可以创建对应的对象。</li>
+<li>class也是类,也被称为对象的设计图(或者对象的模板)</li>
+</ol>
+</li>
+</ol>
+<h2 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h2><ol>
+<li>类:用于描述对象里面具有的属性与行为。</li>
+<li>对象:被类实例化创建出来,在内存中实际存在的。</li>
+</ol>
+<h3 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h3><p>在JAVA中定义类时,需要使用<code>class</code>关键字。class后面的是类名,可以按照自己的取,但是要符合大坨峰命名法的规范。不止java,很多语言皆是如此。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 创建类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>&#123;<br>    <span class="hljs-comment">// 定义成员属性/成员方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<ol>
+<li><p>定义一个类</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>&#123;<br>    <span class="hljs-comment">// 成员属性</span><br>    String name;<br><br>    <span class="hljs-comment">// 成员方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">eat</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(name + <span class="hljs-string">&quot;正在吃东西&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>注意事项</p>
+<ol>
+<li>类名采用大坨峰命名法。</li>
+<li>类内的属性叫做<code>成员属性/成员变量</code>,类内的方法叫做<code>成员方法/成员行为</code>。</li>
+<li>public是来控制<code>访问权限</code>的,是封装内的内容。</li>
+<li>一般一个文件只定义一个类。</li>
+<li>main方法所在的类一般要使用public修饰。</li>
+<li>public修饰的类名必须与文件名相同(尽量都保证类名与文件名相同),如果要在一个文件写多个类,那么其他类可以不用加public。</li>
+<li>成员变量本身存在默认值,在定义成员变量时一般来说不需要初始化值。</li>
+<li>对象与对象之间不会相互影响,但<code>多个变量指向同一个变量时就会相互影响</code>(引用类型)。</li>
+<li>如果某个对象没有一个变量引用,那么该对象无法被操作,该对象会成为所谓的垃圾对象。</li>
+</ol>
+</li>
+</ol>
+<h3 id="类的实例化"><a href="#类的实例化" class="headerlink" title="类的实例化"></a>类的实例化</h3><p>定义一个类,就相当于在计算机中自定义了一种新的数据类型。与int,double类似,只不过int,double是内置类型,而类是用户自定义的类型。用类创建对象的过程被称为<code>类的实例化</code>,在java中采用new关键字配合类名来实例化对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 类的实例化</span><br>        <span class="hljs-type">Student</span> <span class="hljs-variable">stu</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();<br><br>        <span class="hljs-comment">// 给对象添加属性值</span><br>        stu.name = <span class="hljs-string">&quot;小明&quot;</span>;<br>        stu.age = <span class="hljs-number">18</span>;<br>        stu.sex = <span class="hljs-string">&quot;男&quot;</span>;<br><br>        <span class="hljs-comment">// 使用对象调用类内的成员方法</span><br>        stu.hello(); <span class="hljs-comment">// 输出&quot;hello,My name is 小明&quot;</span><br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    <span class="hljs-comment">// 成员属性</span><br>    String name;<br>    <span class="hljs-type">int</span> age;<br>    String sex;<br><br>    <span class="hljs-comment">// 成员方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">hello</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;hello,My name is&quot;</span> + name);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><code>注意事项</code>:当使用类实例化了一个对象后,对象身上就具备类的所有成员属性与成员方法。可以给这些属性赋值,也可以<code>通过对象调用这些成员方法</code>。当调用这个成员方法时,如果<code>成员方法内使用了成员属性</code>,那么<code>属性值应该是调用方法的对象身上的属性值</code>,而不是其他的一些什么。</p>
+<h3 id="对象在计算机中的执行原理"><a href="#对象在计算机中的执行原理" class="headerlink" title="对象在计算机中的执行原理"></a>对象在计算机中的执行原理</h3><ol>
+<li><code>类加载</code>:当Java程序启动时,<code>Java虚拟机(JVM)</code>会加载<code>Student</code>类和<code>Main</code>类的字节码文件,并将类的元数据信息存储到方法区中,包括类的结构,字段,方法,常量池…</li>
+<li><code>main方法入栈</code>:JVM会调用main方法,在栈中为main方法创建一个<code>栈帧</code>。栈帧中包含main方法的局部变量,如:stu。</li>
+<li>对象创建:在main方法中,通过new关键字创建一个对象,那么这个对象被储存在堆中,对象中包含<code>name</code>,<code>age</code>,<code>sex</code>三个字段。</li>
+<li>方法调用:调用<code>hello方法</code>时,JVM会在栈中为hello方法创建新的栈帧,并将控制权转移到hello方法中,在hello方法执行完毕后,栈帧会被弹出栈,控制权返回main方法。</li>
+<li>方法结束:当main方法执行完毕后,栈帧会被弹出栈,程序结束。</li>
+<li>stu变量内记录的是对象的地址,因此变量<code>stu也是引用类型的变量</code>。</li>
+</ol>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p><code>this关键字</code>是java中的一个引用变量,它通常指向当前变量。在一个类的方法或<code>构造器(构造函数)</code>内,this关键字可以用来引用调用该方法或构造器的<code>对象实例</code>。this代表当前正在执行操作的对象本身。<code>哪个对象调用的方法,this就指向哪个对象</code>。</p>
+<h3 id="使用this区分成员变量与局部变量"><a href="#使用this区分成员变量与局部变量" class="headerlink" title="使用this区分成员变量与局部变量"></a>使用this区分成员变量与局部变量</h3><p>当方法或构造函数的<code>参数名</code>与<code>类的成员变量名</code>相同时,就会产生命名冲突,如果不加以区分,编辑器默认会使用局部变量(也就是参数),而不是成员变量,这可能会导致代码逻辑错误。通过<code>this</code>关键字可以明确指定要访问的是<code>类的成员变量</code>。这一点在<code>构造函数(构造器)</code>中常常被使用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// Student类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span> &#123;<br>    String name;<br>    <span class="hljs-type">int</span> age;<br>    String sex;<br><br>    <span class="hljs-comment">// 构造函数,函数名必须与方法名一致</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Student</span><span class="hljs-params">(String name,<span class="hljs-type">int</span> age,String sex)</span>&#123;<br>        <span class="hljs-built_in">this</span>.name = name;<br>        <span class="hljs-built_in">this</span>.age = age;<br>        <span class="hljs-built_in">this</span>.sex = sex;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">hello</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;hello,my name is &quot;</span>+<span class="hljs-built_in">this</span>.name+<span class="hljs-string">&quot;,i am &quot;</span>+<span class="hljs-built_in">this</span>.age+<span class="hljs-string">&quot; years old,i am a &quot;</span>+<span class="hljs-built_in">this</span>.sex);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 项目入口</span><br><span class="hljs-keyword">import</span> java.util.Scanner;<br><span class="hljs-keyword">import</span> java.util.Random;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">Student</span> <span class="hljs-variable">stu</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;小明&quot;</span>,<span class="hljs-number">18</span>,<span class="hljs-string">&quot;男&quot;</span>);<br>        <span class="hljs-comment">// stu.name = &quot;小明&quot;;</span><br>        <span class="hljs-comment">// stu.age = 18;</span><br>        <span class="hljs-comment">// stu.sex = &quot;男&quot;;</span><br><br>        stu.hello();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>通过在构造函数内使用<code>this</code>关键字,<code>this.name = name</code>来指定对象的属性值等于传入的参数值,这样就可以在实例化对象的时候直接通过传递参数的方式来给对象属性赋值,这就是<code>构造函数</code></p>
+<h2 id="构造器-构造函数"><a href="#构造器-构造函数" class="headerlink" title="构造器(构造函数)"></a>构造器(构造函数)</h2><p>创建对象时,对象会调用构造函数。<code>new Student()</code>,<code>Student</code>是创建对象,<code>()</code>是用来调用构造函数的。每个类都有一个构造函数,即便程序员不写,系统也会分配一个默认的构造函数。</p>
+<ol>
+<li>构造函数可以有多个,类似于方法的重载。</li>
+<li>构造函数没有返回值。</li>
+<li>构造函数不需要手动调用,程序会自动帮忙调用。</li>
+<li>构造函数名必须与类名保持一致。</li>
+</ol>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><blockquote>
+<p>继承的本质就是实现对共性的抽取,同时实现代码的复用。通过对事物抽象成为一个类,类内包含这一事物的属性与行为,继承就是将这一类事物的共同属性与行为抽取出来,当在定义术语这一类事物的类时可以直接使用。而<code>抽象类</code>是因为父类提供的信息不足以描述一个具体的类,因此将父类定义为抽象类,间接加上一层效验,防止在代码中使用父类创建并使用对象。但继承也有缺点,继承是对共性的抽取,不同的对象虽然同属于一个类,但各自都会有不同的个性。</p>
+<p>比如:动物类,狗属于动物,鸟也属于动物。但狗会跑,鸟不会。鸟会飞,狗不会。这是两者的<code>个性</code>而非共性,因此<code>父类就无法含有行为跑与行为飞</code>。可以在定义狗类时,加上自己的<code>行为跑</code>,定义鸟类时,加上自己的行为飞。可是新的问题又出现了,如果在定义一个鸭子类呢,鸭子会跑也会飞,在鸭子类中继续定义行为跑与行为飞?<code>当定义的类多了,每个类有自己单独的行为,但不同类之间又有共性,那继承的本质何在?</code></p>
+<p><code>接口</code>可以理解为<code>对外提供一组公共的行为规范标准</code>,只要当前实例化对象符合行为规范标准,就可以让当前类<code>实现这个接口</code>。比如:定义一个接口,是行为跑的标准,狗会跑,因此狗可以实现该接口,在定义一个接口,是行为飞标准,鸟与鸭子会飞,因此鸟与鸭子可以实现这个接口</p>
+</blockquote>
+<ol>
+<li><p>什么是接口?</p>
+<p> 在Java中,<code>接口(interface)</code>是一种引用数据类型,但是它只能包含<code>常量,方法签名和嵌套类型</code>。接口不能包含实例变量或方法的实现(在Java8及以上的版本,可以定义默认方法与静态方法)。接口主要用于定义类的外部行为,并允许类实现这些行为。</p>
+</li>
+</ol>
+<h3 id="接口实现与使用"><a href="#接口实现与使用" class="headerlink" title="接口实现与使用"></a>接口实现与使用</h3><ol>
+<li><p>定义接口语法<br> 接口的定义需使用<code>interface</code>关键字</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>    <span class="hljs-comment">// 常量</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">LEGS</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span>; <span class="hljs-comment">// 默认有 &#x27;public static final&#x27;修饰词</span><br><br>    <span class="hljs-comment">// 抽象方法</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 默认有修饰符&#x27;public abstract&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>接口的实现<br> 一个类通过<code>implements</code>关键字来实现接口,并实现接口中所有的抽象方法。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 实现接口 &#x27;implements 接口名&#x27;</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Animal</span>&#123;<br><br>    <span class="hljs-comment">// 重写接口抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Dog类重写方法&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>接口的使用<br> 通过接口引用实现类对象,可以实现<code>多态</code>性(有点类似于父类引用子类对象)</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">Dog</span> <span class="hljs-variable">dog</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>();<br><br>        dog.makeSound();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="接口的特点"><a href="#接口的特点" class="headerlink" title="接口的特点"></a>接口的特点</h3><ol>
+<li><p>方法共有性与抽象性<br> 接口中的方法都默认是public的,而且必须是public的,private和protected修饰符都不能在接口中使用。<code>接口中的所有方法都是public的,以便能够实现类访问</code>。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span>&#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 默认为public</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>变量默认为<code>公有静态常量</code><br> 接口中定义的变量默认是<code>public static final</code>修饰的,及静态常量。所有实现该接口的类,都可以访问这些常量。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">Dog</span> <span class="hljs-variable">dog</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>();<br>        System.out.println(Dog.LEGS);<br>        System.out.println(Animal.LEGS);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>不能被实例化<br> 接口<code>不能被实例化</code>,所以<code>不支持构造函数</code>。尝试在接口中写构造函数会出现报错。<br> <code>Not allowed in interface</code></p>
+</li>
+<li><p>默认方法和静态方法</p>
+<ol>
+<li>从Java8开始,接口可以包含<code>默认方法与静态方法</code>。</li>
+<li><code>默认方法(default)</code>:默认方法可以有<code>方法体</code>。默认方法不需要实现接口类去实现,但它们仍然是public的,使用<code>default</code>关键词修饰的是默认方法,与访问修饰符无关。</li>
+<li><p><code>静态方法(static)</code>:静态方法也有方法体,不需要实现接口的类实现,这些方法是public的,并且可以通过接口调用。使用static修饰。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>    <span class="hljs-comment">// 常量</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">LEGS</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span>; <span class="hljs-comment">// 默认有 &#x27;public static final&#x27;修饰词</span><br><br>    <span class="hljs-comment">// 抽象方法</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 默认有修饰符&#x27;public abstract&#x27;</span><br><br>    <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">eat</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;eat&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">foo</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;static foo&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong><em>对于<code>默认方法</code>,实现这个接口的类<code>可以重写</code>它</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 实现接口 &#x27;implements 接口名&#x27;</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Animal</span>&#123;<br><br>    <span class="hljs-comment">// 实现接口抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Dog类重写方法&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 重写默认方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">eat</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Dog 在吃&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>接口的抽象方法的实现</p>
+<blockquote>
+<p>一个普通类实现接口,需要将接口中的所有抽象方法实现,如果是抽象类实现接口,则是否实现抽象方法都行。</p>
+</blockquote>
+</li>
+<li><p>接口之间的继承<br> 接口不能继承某个类,但<code>接口可以继承接口</code></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">foo</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;static foo&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 继承接口</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animals</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span>&#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">foo2</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> Java接口支持<code>多重继承</code>,即一个接口可以继承自多个不同的接口。这与类的继承不同,类只支持单继承。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animal</span> &#123;<br>    <span class="hljs-comment">// 常量</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">LEGS</span> <span class="hljs-operator">=</span> <span class="hljs-number">4</span>; <span class="hljs-comment">// 默认有 &#x27;public static final&#x27;修饰词</span><br><br>    <span class="hljs-comment">// 抽象方法</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">makeSound</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 默认有修饰符&#x27;public abstract&#x27;</span><br><br>    <span class="hljs-keyword">default</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">eat</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;eat&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">foo</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;static foo&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">InnerAnimal</span> &#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">foo3</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-comment">// 继承接口</span><br><span class="hljs-keyword">interface</span> <span class="hljs-title class_">Animals</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Animal</span>,InnerAnimal&#123;<br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">foo2</span><span class="hljs-params">()</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="多重接口的实现"><a href="#多重接口的实现" class="headerlink" title="多重接口的实现"></a>多重接口的实现</h3><p>Java中,类本身无法多重继承(一个子类继承多个父类),但一个类可以实现多个接口,这样就实现了多重继承的效果。这种特殊性称为<code>多重接口实现</code>。</p>
+<ol>
+<li>语法<br> 一个类实现多个接口时,接口之间使用逗号分割。 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 实现接口 &#x27;implements 接口名&#x27;</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Animal</span>,InnerAnimal&#123;<br>    <span class="hljs-comment">// 实现接口中的所有方法</span><br>&#125;<br></code></pre></td></tr></table></figure>
+ 实现多个接口时,类必须实现接口中定义的所有抽象方法。如果某个接口有<code>默认方法</code>,则可以<code>重写</code>它或<code>直接使用</code></li>
+</ol>
+<h3 id="实现接口与继承性"><a href="#实现接口与继承性" class="headerlink" title="实现接口与继承性"></a>实现接口与继承性</h3><ol>
+<li>继承单一性 VS 接口多实现</li>
+</ol>
+<p>继承性:Java中一个类只能继承一个父类,这是因为Java不支持多继承,以避免菱形继承问题。</p>
+<p>实现接口:一个类可以实现多个接口,这允许Java类通过实现多个接口来模拟多重继承。</p>
+<h2 id="抽象类与抽象方法"><a href="#抽象类与抽象方法" class="headerlink" title="抽象类与抽象方法"></a>抽象类与抽象方法</h2><h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p><code>抽象类</code>是用<code>abstract</code>关键字修饰的类。它<code>不能被实例化</code>,通常作为其他类的<code>父类(基类)</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 抽象类定义</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span>&#123;<br>    <span class="hljs-comment">// 类体</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>抽象类可以包含普通方法,抽象方法,属性…。</p>
+</blockquote>
+<p>抽象类的特点</p>
+<pre><code class="hljs">1. 抽象类不能直接创建对象,需要通过子类来创建对象
+2. 抽象类可以包含普通成员函数,构造函数,静态属性,属性,抽象方法...任意成员
+</code></pre><h3 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h3><p>抽象方法使用<code>abstract</code>关键字修饰。<code>它没有方法体(即没有作用),必须由子类重写</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 抽象方法 没有方法体</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">speakFa</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 抽象方法没有方法体</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>抽象方法的特点</p>
+<pre><code class="hljs">1. 抽象方法不能写主体
+    抽象方法只能声明,没有实现
+2. 抽象方法不能被`final`,`private`,`static`修饰
+    1. `final`:抽象方法需要被子类重写,而`final`方法不能被重写
+    2. `private`:抽象方法需要被子类访和实现,而`private`方法不能被子类访问
+    3. `static`:抽象方法依赖于实例,而`static`方法不依赖于实例。
+</code></pre></blockquote>
+<h3 id="抽象方法与抽象类的关系"><a href="#抽象方法与抽象类的关系" class="headerlink" title="抽象方法与抽象类的关系"></a>抽象方法与抽象类的关系</h3><ol>
+<li><p>抽象方法只能写在抽象类中</p>
+<p> 如果一个类包含抽象方法,则这个类必须为抽象类。因为如果一个类包含抽象方法,那么这个类无法提供完整的实现,因此不能直接实例化,而<code>class 类名</code>的意思是可以实例化。</p>
+</li>
+<li><p>抽象方法可以没有抽象类</p>
+<p> 抽象类可以不包含抽象方法,但任然不能实例化。</p>
+</li>
+</ol>
+<h3 id="继承抽象类"><a href="#继承抽象类" class="headerlink" title="继承抽象类"></a>继承抽象类</h3><p>当一个类继承抽象类时,必须<code>实现抽象类中的所有抽象方法</code>,或者将自己也声明为抽象类。</p>
+<ol>
+<li><p>实现所有抽象方法,子类必须实现父类中的所有抽象方法。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 抽象类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span>&#123;<br>    <span class="hljs-comment">// 抽象方法 没有方法体</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">speakFa</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 抽象方法没有方法体</span><br>&#125;<br><br><span class="hljs-comment">// 继承抽象类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Sun</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Son</span> &#123;<br><br>    <span class="hljs-comment">// 重写抽象方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">speakFa</span><span class="hljs-params">()</span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;你好&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>声明抽象类,如果子类没有实现父类的所有抽象方法,那么子类也必须声明为抽象类</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 抽象类</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Son</span>&#123;<br>    <span class="hljs-comment">// 抽象方法 没有方法体</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">speakFa</span><span class="hljs-params">()</span>; <span class="hljs-comment">// 抽象方法没有方法体</span><br>&#125;<br><br><span class="hljs-comment">// 继承抽象类 </span><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Sun</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Son</span> &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="抽象类vs接口"><a href="#抽象类vs接口" class="headerlink" title="抽象类vs接口"></a>抽象类vs接口</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>抽象类</th>
+<th>接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关键字</td>
+<td><code>abstract class</code></td>
+<td><code>interface</code></td>
+</tr>
+<tr>
+<td>实例化</td>
+<td>无法实例化</td>
+<td>无法实例化</td>
+</tr>
+<tr>
+<td>方法实现</td>
+<td>可以包含普通方法与抽象方法</td>
+<td>Java8之前只能包含抽象方法</td>
+</tr>
+<tr>
+<td>多继承</td>
+<td>不支持(单继承)</td>
+<td>支持(多实现)</td>
+</tr>
+<tr>
+<td>构造器</td>
+<td>可以有构造器</td>
+<td>不能有构造器</td>
+</tr>
+<tr>
+<td>成员变量</td>
+<td>可以是普通变量</td>
+<td>只能是常量(public static final)</td>
+</tr>
+<tr>
+<td>设计目的</td>
+<td>代码复用和层次设计</td>
+<td>定义规范和扩展功能</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p>什么是内部类?<strong><em>在一个类的里面在定义一个类,就称为内部类</em></strong></p>
+<blockquote>
+<p>需要写一个类,描述一辆汽车。属性有车的品牌,车龄,颜色,发动机品牌以及使用年限。</p>
+<pre><code class="hljs"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span> &#123; <span class="hljs-comment">// 外部类</span><br>String carName;<br><span class="hljs-type">int</span> carAge;<br>String color;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Engine</span>&#123; <span class="hljs-comment">// 内部类</span><br>        String engineName;<br>        <span class="hljs-type">int</span> engineAge;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+1. 内部类表示的是外部类的一部分
+2. 内部类单独出现没有任何意义
+</code></pre></blockquote>
+<p>内部类的访问特点</p>
+<pre><code class="hljs">1. 内部类可以直接访问外部类的成员,包括私有
+2. 外部类要访问内部类的成员,必须创建对象
+</code></pre><h3 id="内部类的分类"><a href="#内部类的分类" class="headerlink" title="内部类的分类"></a>内部类的分类</h3><ol>
+<li><p>成员内部类 </p>
+<blockquote>
+<p>写在成员位置的内部类<br>内部类方法中获取外部类中的重名成员变量</p>
+<pre><code class="hljs"> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span> &#123; <span class="hljs-comment">// 外部类</span><br>    String carName;<br>    <span class="hljs-type">int</span> carAge;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">color</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;red&quot;</span>;<br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Engine</span>&#123; <span class="hljs-comment">// 内部类</span><br>        String engineName;<br>        <span class="hljs-type">int</span> engineAge;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">color</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;yellow&quot;</span>;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">show</span><span class="hljs-params">()</span>&#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">color</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;orange&quot;</span>;<br>            System.out.println(color); <span class="hljs-comment">// orange</span><br>            System.out.println(<span class="hljs-built_in">this</span>.color); <span class="hljs-comment">// yellow</span><br>            System.out.println(Car.<span class="hljs-built_in">this</span>.color); <span class="hljs-comment">// red</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</code></pre></blockquote>
+</li>
+<li><p>静态内部类</p>
+<p> 静态内部类中只能访问<code>外部类中的静态变量与静态方法</code>,如果想要访问非静态的需要创建对象访问</p>
+</li>
+<li><p>局部内部类</p>
+<p> 将内部类定义在<code>方法内</code>,就叫做局部内部类</p>
+</li>
+<li>匿名内部类</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
