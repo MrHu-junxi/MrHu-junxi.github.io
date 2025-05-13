@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DellByte">
+  <meta name="keywords" content="教程,Java,Pyhton,Html,Css,JavaScript,NodeJs,AJAX,Vue,爬虫,前端,后端,博客,资源分享">
+  
+    <meta name="description" content="什么是Stream流?Stream流就是对数据并像流水线一样操作数据。可以结合Lambda表达式,简化数组,集合的操作。 Stream流使用步骤: 1. 得到Stream流,并把数据放上去。 2. 利用Stream流中的各种API进行数据的操作。 获取Stream流 单列集合获取Stream流 1234ArrayList&lt;String&gt; list &#x3D; new ArrayList&lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Java进阶】 Stream流">
+<meta property="og:url" content="http://example.com/2025/04/16/Java/%E3%80%90Java%E8%BF%9B%E9%98%B6%E3%80%91Stream%E6%B5%81/index.html">
+<meta property="og:site_name" content="DellByte">
+<meta property="og:description" content="什么是Stream流?Stream流就是对数据并像流水线一样操作数据。可以结合Lambda表达式,简化数组,集合的操作。 Stream流使用步骤: 1. 得到Stream流,并把数据放上去。 2. 利用Stream流中的各种API进行数据的操作。 获取Stream流 单列集合获取Stream流 1234ArrayList&lt;String&gt; list &#x3D; new ArrayList&lt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-16T08:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-13T09:00:42.690Z">
+<meta property="article:author" content="DellByte">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【Java进阶】 Stream流 - DellByte</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>DellByte</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://tuch.xiaohuzg.xyz/img/Home.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Java进阶】 Stream流"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-16 16:00" pubdate>
+          2025年4月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Java进阶】 Stream流</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="什么是Stream流"><a href="#什么是Stream流" class="headerlink" title="什么是Stream流?"></a>什么是Stream流?</h2><p>Stream流就是对数据并像流水线一样<code>操作数据</code>。可以结合Lambda表达式,简化数组,集合的操作。</p>
+<p>Stream流使用步骤:</p>
+<pre><code class="hljs">1. 得到Stream流,并把数据放上去。
+2. 利用Stream流中的各种API进行数据的操作。
+</code></pre><h2 id="获取Stream流"><a href="#获取Stream流" class="headerlink" title="获取Stream流"></a>获取Stream流</h2><ol>
+<li><p>单列集合获取Stream流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list,<span class="hljs-string">&quot;张三&quot;</span>,<span class="hljs-string">&quot;李四&quot;</span>,<span class="hljs-string">&quot;王五&quot;</span>);<br><span class="hljs-comment">// 获取stream流,并将数据放在stream流内,处理数据</span><br>list.stream().forEach(item -&gt; System.out.print(item + <span class="hljs-string">&quot; &quot;</span>));<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>双列集合获取Stream流</p>
+</li>
+</ol>
+<p>双列集合无法直接使用Stream流,需要用单列集合转换一下。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">HashMap&lt;String, Integer&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>hm.put(<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-number">1</span>);<br>hm.put(<span class="hljs-string">&quot;Python&quot;</span>, <span class="hljs-number">2</span>);<br>hm.put(<span class="hljs-string">&quot;C#&quot;</span>, <span class="hljs-number">3</span>);<br>hm.put(<span class="hljs-string">&quot;C++&quot;</span>, <span class="hljs-number">4</span>);<br><br><br><span class="hljs-comment">// 获取Stream流</span><br><span class="hljs-comment">// 拥有所有key的stream流</span><br>hm.keySet().stream().forEach(item -&gt; System.out.print(item + <span class="hljs-string">&quot; &quot;</span>));<br><span class="hljs-comment">// 拥有每一个键值对的stream流</span><br>hm.entrySet().stream().forEach(item -&gt; System.out.print(item + <span class="hljs-string">&quot;&quot;</span>));<br></code></pre></td></tr></table></figure>
+<ol>
+<li>数据获取stream流</li>
+</ol>
+<p>数组需要通过<code>Arrays类</code>来获取stream流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] arr = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">10</span>&#125;;<br>Arrays.stream(arr).forEach(item -&gt; System.out.println(item));<br></code></pre></td></tr></table></figure>
+<ol>
+<li>一堆零散的数据</li>
+</ol>
+<p>这堆零散的数据需要是同种数据类型的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 直接通过Stream.of获取Stream流</span><br>Stream.of(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>).forEach(item -&gt; System.out.println(item));<br></code></pre></td></tr></table></figure>
+<h2 id="Stream流的中间方法"><a href="#Stream流的中间方法" class="headerlink" title="Stream流的中间方法"></a>Stream流的中间方法</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter(function)</td>
+<td>过滤</td>
+</tr>
+<tr>
+<td>limit(int num)</td>
+<td>获取前几个元素</td>
+</tr>
+<tr>
+<td>skip(int num)</td>
+<td>跳过几个元素</td>
+</tr>
+<tr>
+<td>distinct()</td>
+<td>元素去重(依赖<code>hashCode,equals</code>方法,需要重写)</td>
+</tr>
+<tr>
+<td>concat(Stream a, Stream b)</td>
+<td>合并a,b两个流为一个流(两个流的数据类型,尽量保持一致)</td>
+</tr>
+<tr>
+<td>map(new Function<T, R>(){})</td>
+<td>转换流中的数据类型</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre><code class="hljs">1. 中间方法返回新的Stream流,可以使用链式编程
+2. 修改Stream流中的数据,不会影响原来集合,数组中的数据
+</code></pre><ol>
+<li>filter - 过滤</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java&quot;</span>,<span class="hljs-string">&quot;Html&quot;</span>,<span class="hljs-string">&quot;JavaScript&quot;</span>,<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;C#&quot;</span>,<span class="hljs-string">&quot;C++&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>);<br><span class="hljs-comment">// 过滤掉不是以&#x27;C&#x27;开头的数据</span><br>list.stream().filter(item -&gt; item.startsWith(<span class="hljs-string">&quot;C&quot;</span>));<br><span class="hljs-comment">// 输出 C# C++ C</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>limit - 获取前几个</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java&quot;</span>,<span class="hljs-string">&quot;Html&quot;</span>,<span class="hljs-string">&quot;JavaScript&quot;</span>,<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;C#&quot;</span>,<span class="hljs-string">&quot;C++&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>);<br><span class="hljs-comment">// 获取前三个元素</span><br>list.stream().limit(<span class="hljs-number">3</span>).forEach(item -&gt; System.out.println(item));<br><span class="hljs-comment">// 输出 Java Html JavaScript</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>skip - 跳过几个元素</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java&quot;</span>,<span class="hljs-string">&quot;Html&quot;</span>,<span class="hljs-string">&quot;JavaScript&quot;</span>,<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;C#&quot;</span>,<span class="hljs-string">&quot;C++&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>);<br><br><span class="hljs-comment">// 跳过前三个元素</span><br>list.stream().skip(<span class="hljs-number">3</span>).forEach(item -&gt; System.out.println(item));<br><span class="hljs-comment">// 输出 Python C# C++ C</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>distinct - 元素去重</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java&quot;</span>,<span class="hljs-string">&quot;Html&quot;</span>,<span class="hljs-string">&quot;JavaScript&quot;</span>,<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;C#&quot;</span>,<span class="hljs-string">&quot;C++&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>,<span class="hljs-string">&quot;Java&quot;</span>,<span class="hljs-string">&quot;Html&quot;</span>);<br><br><span class="hljs-comment">// 元素去重</span><br>list.stream().distinct().forEach(item -&gt;System.out.println(item));<br><span class="hljs-comment">// 输出 Java Html JavaScript Python C# C++ C</span><br></code></pre></td></tr></table></figure>
+<p><strong>如果类型不是字符串类型,而是自定义的一些类型,需要重写<code>hashCode,equals</code>方法,因为String底层已经重写这两个方法了,所以这里我不需要重写</strong></p>
+<ol>
+<li>concat - 合并流</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java&quot;</span>,<span class="hljs-string">&quot;Html&quot;</span>,<span class="hljs-string">&quot;JavaScript&quot;</span>,<span class="hljs-string">&quot;Python&quot;</span>,<span class="hljs-string">&quot;C#&quot;</span>,<span class="hljs-string">&quot;C++&quot;</span>,<span class="hljs-string">&quot;C&quot;</span>);<br>ArrayList&lt;String&gt; list2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list2, <span class="hljs-string">&quot;CSS&quot;</span>,<span class="hljs-string">&quot;Vue&quot;</span>,<span class="hljs-string">&quot;Webpack&quot;</span>);<br><br><span class="hljs-comment">// 合并流</span><br>Stream.concat(list.stream(), list2.stream()).forEach(item -&gt; System.out.print(item + <span class="hljs-string">&quot; &quot;</span>));<br><span class="hljs-comment">// 输出 Java Html JavaScript Python C# C++ C CSS Vue Webpack</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>map - 转换数据流中的类型</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br>Collections.addAll(list, <span class="hljs-string">&quot;Java-30&quot;</span>,<span class="hljs-string">&quot;Html-20&quot;</span>,<span class="hljs-string">&quot;JavaScript-18&quot;</span>,<span class="hljs-string">&quot;Python-15&quot;</span>,<span class="hljs-string">&quot;C#-13&quot;</span>,<span class="hljs-string">&quot;C++-33&quot;</span>,<span class="hljs-string">&quot;C-50&quot;</span>);<br><br><span class="hljs-comment">// 只获取后面的数字</span><br><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * 泛型中第一个类型表示原本的类型,第二个类型表示转换之后的类型</span><br><span class="hljs-comment"> * 返回值类型表示转换之后的类型</span><br><span class="hljs-comment"> * s就代表原本的每一个数据</span><br><span class="hljs-comment"> * return 返回的是转换之后的数据</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">// 可以使用Lambda简写</span><br>list.stream().map(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>&lt;String, Integer&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">apply</span><span class="hljs-params">(String s)</span>&#123;<br>        <span class="hljs-comment">// 通过&#x27;-&#x27;切割字符串</span><br>        String[] arr = s.split(<span class="hljs-string">&quot;-&quot;</span>);<br><br>        <span class="hljs-comment">// 获取数字</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> arr[<span class="hljs-number">1</span>];<br><br>        <span class="hljs-comment">// 转换为Integer类型并且返回</span><br>        <span class="hljs-keyword">return</span> Integer.parseInt(age);<br>    &#125;<br>&#125;).forEach(item -&gt; System.out.print(item + <span class="hljs-string">&quot; &quot;</span>));<br><span class="hljs-comment">// 输出 30 20 18 15 13 33 50</span><br></code></pre></td></tr></table></figure>
+<h2 id="Stream流的结束方法"><a href="#Stream流的结束方法" class="headerlink" title="Stream流的结束方法"></a>Stream流的结束方法</h2><p>结束方法,调用以后不能在调用其他方法了</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>forEach()</td>
+<td>遍历</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>统计</td>
+</tr>
+<tr>
+<td>toArray()</td>
+<td>收集数据,放在数组中</td>
+</tr>
+<tr>
+<td>collect(Collector collector)</td>
+<td>收集数据,放在集合中</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>forEach - 遍历</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java-30&quot;</span>,<span class="hljs-string">&quot;Html-20&quot;</span>,<span class="hljs-string">&quot;JavaScript-18&quot;</span>,<span class="hljs-string">&quot;Python-15&quot;</span>,<span class="hljs-string">&quot;C#-13&quot;</span>,<span class="hljs-string">&quot;C++-33&quot;</span>,<span class="hljs-string">&quot;C-50&quot;</span>);<br><br><span class="hljs-comment">// 遍历流中的数据</span><br>list.stream().forEach(item -&gt; System.out.print(item + <span class="hljs-string">&quot; &quot;</span>));<br><span class="hljs-comment">// 输出 Java-30 Html-20 JavaScript-18 Python-15 C#-13 C++-33 C-50</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>count - 统计</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java-30&quot;</span>,<span class="hljs-string">&quot;Html-20&quot;</span>,<span class="hljs-string">&quot;JavaScript-18&quot;</span>,<span class="hljs-string">&quot;Python-15&quot;</span>,<span class="hljs-string">&quot;C#-13&quot;</span>,<span class="hljs-string">&quot;C++-33&quot;</span>,<span class="hljs-string">&quot;C-50&quot;</span>);<br><br><span class="hljs-comment">// 统计数据流中的数据,返回值为long类型</span><br><span class="hljs-type">long</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> list.stream().count();<br>System.out.println(count);<br><span class="hljs-comment">// 输出 7</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li>toArray() - 收集数据放入数组中</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java-30&quot;</span>,<span class="hljs-string">&quot;Html-20&quot;</span>,<span class="hljs-string">&quot;JavaScript-18&quot;</span>,<span class="hljs-string">&quot;Python-15&quot;</span>,<span class="hljs-string">&quot;C#-13&quot;</span>,<span class="hljs-string">&quot;C++-33&quot;</span>,<span class="hljs-string">&quot;C-50&quot;</span>);<br><br><span class="hljs-comment">// 如果方法内不写参数,默认返回Object类型的数据</span><br>String[] arr = list.stream().toArray(<span class="hljs-keyword">new</span> <span class="hljs-title class_">IntFunction</span>&lt;String[]&gt;() &#123;<br>    <span class="hljs-comment">// IntFunction泛型可以选择自己需要的类型,apply返回值的类型需要保持一致</span><br>    <span class="hljs-comment">// apply()中的形参表示流中数据的个数,要跟数组的长度保持一致</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String[] apply(<span class="hljs-type">int</span> value) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>[value];<br>    &#125;<br>&#125;);<br><br>System.out.println(Arrays.toString(arr));<br></code></pre></td></tr></table></figure>
+<pre><code class="hljs">参数的作用:负责创建指定类型的数组
+方法的底层:依次得到流中的每个数据,放在数组中
+方法的返回值:一个装着流里面所有数据的数组
+</code></pre><ol>
+<li>collect - 收集数据,放入集合中</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java">ArrayList&lt;String&gt; list = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>Collections.addAll(list, <span class="hljs-string">&quot;Java-30&quot;</span>,<span class="hljs-string">&quot;Html-20&quot;</span>,<span class="hljs-string">&quot;JavaScript-18&quot;</span>,<span class="hljs-string">&quot;Python-15&quot;</span>,<span class="hljs-string">&quot;C#-13&quot;</span>,<span class="hljs-string">&quot;C++-33&quot;</span>,<span class="hljs-string">&quot;C-50&quot;</span>);<br><br><span class="hljs-comment">// 收集到List集合中</span><br>List&lt;String&gt; newList = list.stream().collect(Collectors.toList());<br>System.out.println(newList);<br><br><span class="hljs-comment">// 收集到Set集合中</span><br>Set&lt;String&gt; newSet = list.stream().collect(Collectors.toSet());<br>System.out.println(newSet);<br><br><span class="hljs-comment">// 收集到Map集合中 - 规定谁作为key,谁作为value</span><br><span class="hljs-comment">// toMap()方法内需要规定Key的规则,value的规则</span><br><span class="hljs-comment">// Function内的第一个泛型类型对应apply()方法的参数类型,第二个泛型类型对应apply()返回值类型</span><br><span class="hljs-comment">// new Function()也可以使用Lambda简写</span><br>Map&lt;String, Integer&gt; map = list.stream().collect(Collectors.toMap(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>&lt;String,String&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">apply</span><span class="hljs-params">(String t)</span> &#123;<br>        <span class="hljs-keyword">return</span> t.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">0</span>];<br>    &#125;<br>&#125;,<span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>&lt;String,Integer&gt;() &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">apply</span><span class="hljs-params">(String t)</span> &#123;<br>        <span class="hljs-keyword">return</span> Integer.parseInt(t.split(<span class="hljs-string">&quot;-&quot;</span>)[<span class="hljs-number">1</span>]);<br>    &#125;<br>&#125;));<br><br>System.out.println(map);<br></code></pre></td></tr></table></figure>
+<p><strong>数据收集到Map集合中,key是不能重复的</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Java/" class="category-chain-item">Java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Java/" class="print-no-link">#Java</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
