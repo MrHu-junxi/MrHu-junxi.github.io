@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6821ff7158cb8da5c8eeb231.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6821ff7258cb8da5c8eeb23b.png">
 <meta property="article:published_time" content="2025-05-12T13:57:00.000Z">
-<meta property="article:modified_time" content="2025-05-13T08:15:02.576Z">
+<meta property="article:modified_time" content="2025-05-14T01:30:56.516Z">
 <meta property="article:author" content="DellByte">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
@@ -230,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.6k 字
         
       </span>
     
@@ -518,6 +518,85 @@
 <h3 id="输出语句与打印流之间的关系"><a href="#输出语句与打印流之间的关系" class="headerlink" title="输出语句与打印流之间的关系"></a>输出语句与打印流之间的关系</h3><blockquote>
 <p>输出语句其实底层用的就是打印流。如果进入<code>System</code>类，可以看见，<code>out</code>是System中一个<code>PrintStream</code>类的静态变量，那么<code>System.out.peintln</code>，其实就是通过System类调用out静态变量，然后在调用PrintStream中的<code>println()</code>方法。out这个<code>打印流对象</code>，是在虚拟机启动时，由虚拟机自动创建的。out打印流对象默认指向控制台，也可以把它称为：<code>系统中的标准输出流</code>。</p>
 </blockquote>
+<h2 id="压缩流与解压缩流"><a href="#压缩流与解压缩流" class="headerlink" title="压缩流与解压缩流"></a>压缩流与解压缩流</h2><h3 id="解压缩流"><a href="#解压缩流" class="headerlink" title="解压缩流"></a>解压缩流</h3><p>压缩包里面的每一个文件都是一个<code>ZipEntry</code>对象，解压的本质就是把每一个ZipEntry对象按照层级拷贝到本地另一个文件夹中。在Java中只能识别<code>.zip</code>的压缩文件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.FileInputStream;<br><span class="hljs-keyword">import</span> java.io.FileOutputStream;<br><span class="hljs-keyword">import</span> java.util.zip.ZipEntry;<br><span class="hljs-keyword">import</span> java.util.zip.ZipInputStream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 定义一个File对象表示压缩包,数据源</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">src</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;IOUTF.zip&quot;</span>);<br>        <span class="hljs-comment">// 定义一个File对象表示解压文件的位置,目的地</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">dest</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;src&quot;</span>);<br><br>        unzip(src, dest);<br>    &#125;<br><br>    <span class="hljs-comment">// 定义一个方法用来解压</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">unzip</span><span class="hljs-params">(File src, File dest)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 创建一个解压缩流用来读取压缩包中的数据</span><br>        <span class="hljs-type">ZipInputStream</span> <span class="hljs-variable">zis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipInputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(src));<br>        <span class="hljs-comment">// 获取压缩包中的每一个zipentry对象</span><br>        ZipEntry zipEntry;<br>        <span class="hljs-keyword">while</span> ((zipEntry = zis.getNextEntry()) != <span class="hljs-literal">null</span>) &#123;<br><br>            <span class="hljs-keyword">if</span> (zipEntry.isDirectory()) &#123;<br>                <span class="hljs-comment">// 如果是文件夹</span><br>                <span class="hljs-type">File</span> <span class="hljs-variable">file</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(dest, zipEntry.toString());<br>                file.mkdirs();<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-type">FileOutputStream</span> <span class="hljs-variable">fos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(dest, zipEntry.toString()));<br>                <span class="hljs-comment">// 如果是文件</span><br>                <span class="hljs-type">int</span> b;<br>                <span class="hljs-keyword">while</span> ((b = zis.read()) != -<span class="hljs-number">1</span>) &#123;<br>                    fos.write(b);<br>                &#125;<br>                fos.close();<br>                zis.closeEntry();<br>            &#125;<br>        &#125;<br>        zis.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="压缩流"><a href="#压缩流" class="headerlink" title="压缩流"></a>压缩流</h3><p>压缩的本质：把每一个ZipEntry对象放到压缩包中</p>
+<h4 id="压缩单个文件"><a href="#压缩单个文件" class="headerlink" title="压缩单个文件"></a>压缩单个文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.io.File;<br><span class="hljs-keyword">import</span> java.io.FileInputStream;<br><span class="hljs-keyword">import</span> java.io.FileOutputStream;<br><span class="hljs-keyword">import</span> java.io.IOException;<br><span class="hljs-keyword">import</span> java.util.zip.ZipEntry;<br><span class="hljs-keyword">import</span> java.util.zip.ZipOutputStream;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-comment">// 创建File对象表示要压缩的文件</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">src</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;IOGDK.txt&quot;</span>);<br>        <span class="hljs-comment">// 创建File表示压缩到的位置</span><br>        <span class="hljs-type">File</span> <span class="hljs-variable">dest</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(<span class="hljs-string">&quot;src&quot;</span>);<br><br>        toZip(src, dest);<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">toZip</span><span class="hljs-params">(File src, File dest)</span> <span class="hljs-keyword">throws</span> IOException&#123;<br>        <span class="hljs-type">ZipOutputStream</span> <span class="hljs-variable">zos</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">FileOutputStream</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>(dest,<span class="hljs-string">&quot;IOGBK.zip&quot;</span>)));<br><br>        <span class="hljs-type">ZipEntry</span> <span class="hljs-variable">entry</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ZipEntry</span>(<span class="hljs-string">&quot;GBK.txt&quot;</span>);<br><br>        zos.putNextEntry(entry);<br><br>        <span class="hljs-type">FileInputStream</span> <span class="hljs-variable">fis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileInputStream</span>(src);<br>        <span class="hljs-type">int</span> b;<br>        <span class="hljs-keyword">while</span>((b = fis.read()) != -<span class="hljs-number">1</span>)&#123;<br>            zos.write(b);<br>        &#125;<br>        fis.close();<br>        zos.closeEntry();<br>        zos.close();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Commons-io工具包"><a href="#Commons-io工具包" class="headerlink" title="Commons-io工具包"></a>Commons-io工具包</h2><h3 id="第三方包使用步骤"><a href="#第三方包使用步骤" class="headerlink" title="第三方包使用步骤"></a>第三方包使用步骤</h3><ol>
+<li>下载第三方Commons-io包:<a target="_blank" rel="noopener" href="https://commons.apache.org/io/download_io.cgi">https://commons.apache.org/io/download_io.cgi</a></li>
+<li>在项目中新建一个<code>lib</code>文件夹，用来专门存放第三方包</li>
+<li>将<code>jar包</code>复制粘贴到lib文件夹</li>
+<li>右键点击jar包，选择<code>Add as Library</code> -&gt; 点击OK</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://commons.apache.org/proper/commons-io/">Commons-io</a>是<code>apache</code>(专门为开源软件项目办的一个非营利性组织)开源基金组织提供的一组关于IO操作的开源工具包(还达不到框架级别)，可以提高IO流的开发效率。</p>
+<h3 id="Commons-io常见方法"><a href="#Commons-io常见方法" class="headerlink" title="Commons-io常见方法"></a>Commons-io常见方法</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>FileUtils类(文件/文件夹)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>static void copyFile(File srcFile, File destFile)</td>
+<td>复制文件</td>
+</tr>
+<tr>
+<td>static void copyDirectory(File srcDir, File destDir)</td>
+<td>复制文件夹</td>
+</tr>
+<tr>
+<td>static void copyDirectoryToDirectory(File srcDir, File destDir)</td>
+<td>复制文件夹</td>
+</tr>
+<tr>
+<td>static void deleteDirectory(File directory)</td>
+<td>删除文件夹</td>
+</tr>
+<tr>
+<td>static void cleanDirectory(File directory)</td>
+<td>清空文件夹</td>
+</tr>
+<tr>
+<td>static String readFileToString(File file, Charset encoding)</td>
+<td>读取文件中的数据为字符串</td>
+</tr>
+<tr>
+<td>static void write(File file, CharSequence data, String encoding)</td>
+<td>写出数据</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>IOUtils类(流相关)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public static int copy(InputStream input, OutputStream output)</td>
+<td>复制文件</td>
+</tr>
+<tr>
+<td>public static int copyLarge(Reader input, Writer output)</td>
+<td>复制大文件</td>
+</tr>
+<tr>
+<td>public static String readLines(Reader input)</td>
+<td>读取数据</td>
+</tr>
+<tr>
+<td>public static void write(String data, OutputStream output)</td>
+<td>写出数据</td>
+</tr>
+</tbody>
+</table>
+</div>
 
                 
               </div>

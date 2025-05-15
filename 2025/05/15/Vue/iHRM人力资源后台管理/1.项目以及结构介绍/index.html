@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DellByte">
+  <meta name="keywords" content="教程,Java,Pyhton,Html,Css,JavaScript,NodeJs,AJAX,Vue,爬虫,前端,后端,博客,资源分享">
+  
+    <meta name="description" content="该项目是黑马程序员为学习Vue的初学者特地准备的Vue人力资源后台管理系统项目，觉得不错的可以去B站搜索黑马程序员，关注收藏一下。本人也非常喜欢黑马的课程，非常适合新手，不要在乎别人的流言蜚语，感兴趣的小伙伴可以一起学习，变得更强。加油！！！   项目介绍项目架构： Vue2 VueRouter Vuex Vue-cli Element Axios sass js-cookie  开发工具： V">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iHRM人力资源后台管理-基础架构解析">
+<meta property="og:url" content="http://example.com/2025/05/15/Vue/iHRM%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%BA%90%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/1.%E9%A1%B9%E7%9B%AE%E4%BB%A5%E5%8F%8A%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="DellByte">
+<meta property="og:description" content="该项目是黑马程序员为学习Vue的初学者特地准备的Vue人力资源后台管理系统项目，觉得不错的可以去B站搜索黑马程序员，关注收藏一下。本人也非常喜欢黑马的课程，非常适合新手，不要在乎别人的流言蜚语，感兴趣的小伙伴可以一起学习，变得更强。加油！！！   项目介绍项目架构： Vue2 VueRouter Vuex Vue-cli Element Axios sass js-cookie  开发工具： V">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/682585db58cb8da5c8f28805.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/6825b87558cb8da5c8f3959a.png">
+<meta property="article:published_time" content="2025-05-15T06:11:00.000Z">
+<meta property="article:modified_time" content="2025-05-15T09:50:34.502Z">
+<meta property="article:author" content="DellByte">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/682585db58cb8da5c8f28805.png">
+  
+  
+  
+  <title>iHRM人力资源后台管理-基础架构解析 - DellByte</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>DellByte</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://tuch.xiaohuzg.xyz/img/Home.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="iHRM人力资源后台管理-基础架构解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-15 14:11" pubdate>
+          2025年5月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">iHRM人力资源后台管理-基础架构解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>该项目是<a target="_blank" rel="noopener" href="https://www.itheima.com/">黑马程序员</a>为学习<code>Vue</code>的初学者特地准备的<code>Vue人力资源后台管理系统项目</code>，觉得不错的可以去B站搜索<code>黑马程序员</code>，关注收藏一下。本人也非常喜欢黑马的课程，非常适合新手，不要在乎别人的流言蜚语，感兴趣的小伙伴可以一起学习，变得更强。加油！！！</p>
+</blockquote>
+<p><img src="https://pic1.imgdb.cn/item/682585db58cb8da5c8f28805.png" srcset="/img/loading.gif" lazyload alt="项目介绍"></p>
+<h2 id="项目介绍"><a href="#项目介绍" class="headerlink" title="项目介绍"></a>项目介绍</h2><h3 id="项目架构："><a href="#项目架构：" class="headerlink" title="项目架构："></a>项目架构：</h3><ol>
+<li>Vue2</li>
+<li>VueRouter</li>
+<li>Vuex</li>
+<li>Vue-cli</li>
+<li>Element</li>
+<li>Axios</li>
+<li>sass</li>
+<li>js-cookie</li>
+</ol>
+<h3 id="开发工具："><a href="#开发工具：" class="headerlink" title="开发工具："></a>开发工具：</h3><ol>
+<li>VSCode</li>
+<li>Vetur</li>
+<li>ESLint</li>
+<li>Git</li>
+<li>Sass</li>
+<li>Nginx</li>
+</ol>
+<h3 id="项目流程安排："><a href="#项目流程安排：" class="headerlink" title="项目流程安排："></a>项目流程安排：</h3><ol>
+<li><a href="">基础架构拆解</a></li>
+<li><a href="">登录模块</a></li>
+<li><a href="">主页模块</a></li>
+<li><a href="">组织架构</a></li>
+<li><a href="">角色管理</a></li>
+<li><a href="">员工管理</a></li>
+<li><a href="">员工详情</a></li>
+<li><a href="">云储存</a></li>
+<li><a href="">权限应用</a></li>
+<li><a href="">上线部署</a></li>
+</ol>
+<h2 id="拉取基础模板"><a href="#拉取基础模板" class="headerlink" title="拉取基础模板"></a>拉取基础模板</h2><h3 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h3><ol>
+<li><p>创建一个空目录</p>
+</li>
+<li><p>打开终端，输入以下<code>git命令</code>克隆仓库</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/PanJiaChen/vue-admin-template.git heimahr<br></code></pre></td></tr></table></figure>
+<p> <code>heimahr</code>代表克隆出来的仓库被放在heimahr目录内，如果不写克隆出来的仓库将被默认放在vue-admin-template目录内。完成之后出现heimahr目录，克隆成功</p>
+</li>
+<li><p>用VSCode打开克隆出来的heimahr项目</p>
+</li>
+</ol>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><ol>
+<li><p>进入<code>package.json</code>文件，找到<code>&quot;core-js&quot;</code>配置，此时的版本号已经有点滞后了，将后面的版本号改为<code>3.25.5</code></p>
+</li>
+<li><p>输入<code>npm install</code>安装依赖</p>
+</li>
+</ol>
+<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> dev<br></code></pre></td></tr></table></figure>
+<h3 id="安装VSCode插件"><a href="#安装VSCode插件" class="headerlink" title="安装VSCode插件"></a>安装VSCode插件</h3><ol>
+<li>Vetur</li>
+<li>ESLint</li>
+</ol>
+<p>这俩插件可以提高开发效率和检查错误，不过不安装也无伤大雅</p>
+<h2 id="项目目录以及入口文件介绍"><a href="#项目目录以及入口文件介绍" class="headerlink" title="项目目录以及入口文件介绍"></a>项目目录以及入口文件介绍</h2><h3 id="src源目录"><a href="#src源目录" class="headerlink" title="src源目录"></a>src源目录</h3><h4 id="api目录"><a href="#api目录" class="headerlink" title="api目录"></a>api目录</h4><p>api目录主要用来存放一下与<code>请求</code>相关的代码，比如登录请求。这样一来别的组件需要发送/接收请求直接引入使用相应方法就可以</p>
+<h4 id="assets目录"><a href="#assets目录" class="headerlink" title="assets目录"></a>assets目录</h4><p>assets目录为静态资源目录，该目录主要用来存放一些图片资源，字体资源之类的资源文件</p>
+<h4 id="components目录"><a href="#components目录" class="headerlink" title="components目录"></a>components目录</h4><p>components目录为组件目录，一般多数组件都能用到的公共组件会被放在此目录下</p>
+<h4 id="icons目录"><a href="#icons目录" class="headerlink" title="icons目录"></a>icons目录</h4><p>icons目录就是一个小图标目录，里面都是用来存放小图标的，因为里面都是使用SVG所以没有放在assets目录下，并且里面还有关于自动引入小图标的代码</p>
+<h4 id="layout目录"><a href="#layout目录" class="headerlink" title="layout目录"></a>layout目录</h4><p>layout目录为布局目录，与布局相关组件会放在layout目录下</p>
+<h4 id="router目录"><a href="#router目录" class="headerlink" title="router目录"></a>router目录</h4><p>router目录是存放项目路由的目录，与路由相关的配置文件会被放在此目录下</p>
+<h4 id="store目录"><a href="#store目录" class="headerlink" title="store目录"></a>store目录</h4><p>store目录是Vuex配置文件的存放位置，也就是状态管理工具管理的数据会放在里面</p>
+<h4 id="styles目录"><a href="#styles目录" class="headerlink" title="styles目录"></a>styles目录</h4><p>styles目录就是样式目录，里面都是一些公共样式</p>
+<h4 id="utils目录"><a href="#utils目录" class="headerlink" title="utils目录"></a>utils目录</h4><p>utils目录为工具目录，里面都是一些工具文件，这些工具文件完成某些特定功能，别的地方需要使用这些功能，直接引入使用即可</p>
+<h4 id="views目录"><a href="#views目录" class="headerlink" title="views目录"></a>views目录</h4><p>views目录也是一个组件目录，只不过里面存放的都是路由器组件，也就是路由需要使用到的组件</p>
+<h4 id="main-js文件"><a href="#main-js文件" class="headerlink" title="main.js文件"></a>main.js文件</h4><p>main.js文件为项目的入口文件，该文件引入了一些其他文件，并且实例化了<code>Vue</code>，挂载了router，Vuex状态管理工具以及渲染app.vue根组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入一些外部文件</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;normalize.css/normalize.css&#x27;</span> <span class="hljs-comment">// A modern alternative to CSS resets</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">ElementUI</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;element-ui/lib/theme-chalk/index.css&#x27;</span><br><span class="hljs-keyword">import</span> locale <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;element-ui/lib/locale/lang/en&#x27;</span> <span class="hljs-comment">// lang i18n</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@/styles/index.scss&#x27;</span> <span class="hljs-comment">// global css</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App&#x27;</span><br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@/icons&#x27;</span> <span class="hljs-comment">// icon</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@/permission&#x27;</span> <span class="hljs-comment">// permission control</span><br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">* 判断如果当前处于production(生产环境)进行一下操作</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&#x27;production&#x27;</span>) &#123;<br>  <span class="hljs-keyword">const</span> &#123; mockXHR &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../mock&#x27;</span>)<br>  <span class="hljs-title function_">mockXHR</span>()<br>&#125;<br><br><span class="hljs-comment">// 注册ElementUI组件</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">ElementUI</span>, &#123; locale &#125;)<br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">productionTip</span> = <span class="hljs-literal">false</span><br><br><span class="hljs-comment">// 实例化</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>  <span class="hljs-attr">el</span>: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>  router,<br>  store,<br>  <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h4 id="app-vue文件"><a href="#app-vue文件" class="headerlink" title="app.vue文件"></a>app.vue文件</h4><p>app.vue为项目的根组件</p>
+<h4 id="settings-js文件"><a href="#settings-js文件" class="headerlink" title="settings.js文件"></a>settings.js文件</h4><p>settings.js为基础设置文件，包括网站标题，固定header，是否显示logo</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br><br>  <span class="hljs-comment">// 网站标题</span><br>  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;人力资源后台管理系统&#x27;</span>,<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@type</span> &#123;<span class="hljs-type">boolean</span>&#125; true | false</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@description</span> Whether fix the header</span><br><span class="hljs-comment">   * 头部菜单栏是否固定</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-attr">fixedHeader</span>: <span class="hljs-literal">false</span>,<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@type</span> &#123;<span class="hljs-type">boolean</span>&#125; true | false</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@description</span> Whether show the logo in sidebar</span><br><span class="hljs-comment">   * 侧边栏是否显示logo</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-attr">sidebarLogo</span>: <span class="hljs-literal">false</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="permission-js文件"><a href="#permission-js文件" class="headerlink" title="permission.js文件"></a>permission.js文件</h4><p>permission.js为路由守卫文件，里面有一个<code>路由前置守卫</code>(路由跳转之前执行)与一个<code>路由后置守卫</code>(路由跳转之后执行)</p>
+<h2 id="Vuex结构介绍"><a href="#Vuex结构介绍" class="headerlink" title="Vuex结构介绍"></a>Vuex结构介绍</h2><p>模板中Vuex(状态管理工具)的设计思想：</p>
+<ol>
+<li>页面交互状态使用全局状态Vuex</li>
+<li>根据功能拆分为不同模块(modules)进行状态管理</li>
+<li>通过getters建立对于模板中属性的快捷访问</li>
+</ol>
+<p><img src="https://pic1.imgdb.cn/item/6825b87558cb8da5c8f3959a.png" srcset="/img/loading.gif" lazyload alt="Vuex结构介绍"></p>
+<h2 id="使用模板中的icon图标"><a href="#使用模板中的icon图标" class="headerlink" title="使用模板中的icon图标"></a>使用模板中的icon图标</h2>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/" class="print-no-link">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
