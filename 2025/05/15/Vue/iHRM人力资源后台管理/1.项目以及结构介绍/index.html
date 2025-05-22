@@ -23,13 +23,14 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="iHRM人力资源后台管理-基础架构解析">
 <meta property="og:url" content="http://example.com/2025/05/15/Vue/iHRM%E4%BA%BA%E5%8A%9B%E8%B5%84%E6%BA%90%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/1.%E9%A1%B9%E7%9B%AE%E4%BB%A5%E5%8F%8A%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D/index.html">
-<meta property="og:site_name" content="DellByte">
+<meta property="og:site_name" content="S.F">
 <meta property="og:description" content="该项目是黑马程序员为学习Vue的初学者特地准备的Vue人力资源后台管理系统项目，觉得不错的可以去B站搜索黑马程序员，关注收藏一下。本人也非常喜欢黑马的课程，非常适合新手，不要在乎别人的流言蜚语，感兴趣的小伙伴可以一起学习，变得更强。加油！！！   项目介绍项目架构： Vue2 VueRouter Vuex Vue-cli Element Axios sass js-cookie  开发工具： V">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/682585db58cb8da5c8f28805.png">
 <meta property="og:image" content="https://pic1.imgdb.cn/item/6825b87558cb8da5c8f3959a.png">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/682aa7a358cb8da5c8fbbbe9.png">
 <meta property="article:published_time" content="2025-05-15T06:11:00.000Z">
-<meta property="article:modified_time" content="2025-05-15T09:50:34.502Z">
+<meta property="article:modified_time" content="2025-05-19T06:30:48.012Z">
 <meta property="article:author" content="DellByte">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +38,7 @@
   
   
   
-  <title>iHRM人力资源后台管理-基础架构解析 - DellByte</title>
+  <title>iHRM人力资源后台管理-基础架构解析 - S.F</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -105,7 +106,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>DellByte</strong>
+      <strong>S.F</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -178,6 +179,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
@@ -230,7 +243,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2.2k 字
         
       </span>
     
@@ -353,7 +366,65 @@
 <li>通过getters建立对于模板中属性的快捷访问</li>
 </ol>
 <p><img src="https://pic1.imgdb.cn/item/6825b87558cb8da5c8f3959a.png" srcset="/img/loading.gif" lazyload alt="Vuex结构介绍"></p>
-<h2 id="使用模板中的icon图标"><a href="#使用模板中的icon图标" class="headerlink" title="使用模板中的icon图标"></a>使用模板中的icon图标</h2>
+<h2 id="使用模板中的icon图标"><a href="#使用模板中的icon图标" class="headerlink" title="使用模板中的icon图标"></a>使用模板中的icon图标</h2><p>打开<code>icons/svg目录</code>可以看到有很多svg图标，这些图标都是可以使用的，但是还需要借助一个组件<code>components/SvgIcon</code>。现在组件已经是注册好的，可以直接使用拥有的svg图标</p>
+<blockquote>
+<p>首先，先找到<code>views/dashboard组件</code>。往<span style="color:blue">dashboard-container</span>元素内添加<code>&lt;svg-icon /&gt;</code>标签并且设置<code>icon-class</code>属性，属性值就是svg目录内要使用的svg图标文件的文件名，不需要带文件后缀</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dashboard-container&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dashboard-text&quot;</span>&gt;</span>name: &#123;&#123; name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 使用svg图标(不需要后缀) --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">svg-icon</span> <span class="hljs-attr">icon-class</span>=<span class="hljs-string">&quot;dashboard&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>启动项目，可以看见svg图标可以正常显示在页面上</p>
+<h3 id="添加自己的svg图标"><a href="#添加自己的svg图标" class="headerlink" title="添加自己的svg图标"></a>添加自己的svg图标</h3><ol>
+<li>将自己的svg文件放入svg目录下</li>
+<li>icon-class属性值，设置为自己的svg图标文件的文件名</li>
+</ol>
+<h2 id="模板中icon图标实现思路"><a href="#模板中icon图标实现思路" class="headerlink" title="模板中icon图标实现思路"></a>模板中icon图标实现思路</h2><ol>
+<li><p>首先看main.js入口文件</p>
+<p>可以看见main.js内引入了icons目录内的index.js文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 会自动查找icons目录内的index文件引入</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@/icons&#x27;</span> <span class="hljs-comment">// icon</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>进入icons/index.js文件</p>
+<p>在index.js文件内，首先：</p>
+<ol>
+<li>将<code>svg-icon</code>注册为全局组件，在任何组件内都可以直接使用</li>
+<li>扫描svg目录下所有以.svg结尾的文件<br>require.context(‘目标目录’,是否扫描子目录,正则表达式[这里代表以.svg结尾的文件])，它的返回值是一个函数</li>
+<li>获取所有文件路径，进行处理<br><code>requireAll</code>为箭头函数，通过<code>req.keys()</code>方法可以获取所有的svg文件路径。接着调用<code>.map()</code>方法循环，并且传递<code>req</code>。目的就是将所有的svg图标引入到项目中</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 注册全局组件</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;svg-icon&#x27;</span>, <span class="hljs-title class_">SvgIcon</span>)<br><br><span class="hljs-comment">// 扫描svg目录下所有以.svg结尾的文件</span><br><span class="hljs-keyword">const</span> req = <span class="hljs-built_in">require</span>.<span class="hljs-title function_">context</span>(<span class="hljs-string">&#x27;./svg&#x27;</span>, <span class="hljs-literal">false</span>, <span class="hljs-regexp">/\.svg$/</span>)<br><br><span class="hljs-comment">// 获取所有的文件路径，并且进行处理</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">requireAll</span> = requireContext =&gt; requireContext.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">map</span>(requireContext)<br><span class="hljs-title function_">requireAll</span>(req)<br><br><span class="hljs-comment">// webpack loader</span><br></code></pre></td></tr></table></figure>
+<p>将svg图标引入到项目后，接着还需要借助<code>webpack loader</code>插件，把svg图标打包为html标签形式，才可以使用</p>
+</li>
+<li><p>进入<code>vue.config.js</code>文件</p>
+<p>在文件内，找到<code>set svg-sprite-loader</code>配置，代表设置svg精灵图，这里就是进一步的配置了svg</p>
+</li>
+</ol>
+<h2 id="导入样式和资源"><a href="#导入样式和资源" class="headerlink" title="导入样式和资源"></a>导入样式和资源</h2><ol>
+<li><p>素材：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1OqhZQsx-S-TF9vmpkBznzQ?pwd=9999">https://pan.baidu.com/s/1OqhZQsx-S-TF9vmpkBznzQ?pwd=9999</a><br>提取码：9999</p>
+</li>
+<li><p>下载里面替换的资源文件，里面有styles,assets以及icons文件夹</p>
+</li>
+<li>将这三个文件夹拖入项目的src目录下，点击替换掉项目里面的文件夹</li>
+</ol>
+<h2 id="使用git管理项目"><a href="#使用git管理项目" class="headerlink" title="使用git管理项目"></a>使用git管理项目</h2><p>在管理项目之前，可以先使用<code>git log</code>命令查看当前的项目日志</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Author:</span> <span class="hljs-string">花裤衩</span> <span class="hljs-string">&lt;panfree23@gmail.com&gt;</span><br><span class="hljs-attr">Date:</span>   <span class="hljs-string">Sun</span> <span class="hljs-string">Jul</span> <span class="hljs-number">26</span> <span class="hljs-number">10</span><span class="hljs-string">:07:01</span> <span class="hljs-number">2020</span> <span class="hljs-string">+0800</span><br><span class="hljs-string">:</span><br></code></pre></td></tr></table></figure>
+<p>可以看到，作者是叫花裤衩。这样肯定不行，我们的项目要使用git提交到仓库的话不能提交到人家的仓库，而且我们也没有权限。<br>先找到项目中的<code>.git</code>文件夹，将其删除(这个目录一般是隐藏状态，找不到的话需要打开文件夹显示影藏项目的设置试试)，删除以后项目就没有git记录了，需要重新初始化一个仓库。</p>
+<ol>
+<li><p>初始化仓库</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp">git <span class="hljs-keyword">init</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将文件添加到暂存区</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">git <span class="hljs-built_in">add</span> .<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>提交修改</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">git</span> commit -m <span class="hljs-string">&quot;初始化项目&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看提交历史</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">git <span class="hljs-built_in">log</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">Author:</span> <span class="hljs-string">***</span> <span class="hljs-string">&lt;***@qq.com&gt;</span><br><span class="hljs-attr">Date:</span>   <span class="hljs-string">Mon</span> <span class="hljs-string">May</span> <span class="hljs-number">19</span> <span class="hljs-number">11</span><span class="hljs-string">:24:05</span> <span class="hljs-number">2025</span> <span class="hljs-string">+0800</span><br><br>    <span class="hljs-string">初始化仓库</span><br></code></pre></td></tr></table></figure>
+<p>可以看到项目此时已经有了一个我们自己的提交记录了，但还需要创建一个远程仓库才行。我们可以使用<a target="_blank" rel="noopener" href="https://gitee.com">gitee</a>新建一个远程仓库，只需要填入远程仓库名称即可</p>
+<p><img src="https://pic1.imgdb.cn/item/682aa7a358cb8da5c8fbbbe9.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>新建好仓库以后会生成一个地址，复制地址。回到项目，在终端使用<code>git remote add origin</code>命令，后面加上生成的地址，相当于给本地仓库起了个别名<code>origin</code>。然后使用<code>git push -u origin &quot;master&quot;</code>命令，代表将本地仓库推送到远程。回到gitee，查看仓库，就可以看到我们提交的代码已经在仓库里面了</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs armasm"><span class="hljs-symbol">git</span> remote <span class="hljs-keyword">add</span> origin https:<span class="hljs-comment">//gitee.com/hu_junxi/i-hrm-human-resources.git</span><br><span class="hljs-symbol">git</span> <span class="hljs-keyword">push</span> -u origin <span class="hljs-string">&quot;master&quot;</span><br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
