@@ -1,0 +1,1036 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DellByte">
+  <meta name="keywords" content="教程,Java,Pyhton,Html,Css,JavaScript,NodeJs,AJAX,Vue,爬虫,前端,后端,博客,资源分享">
+  
+    <meta name="description" content="该网站为博客类网站，主要用于收录一些关于编程方面的文章。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="S.F">
+<meta property="og:url" content="http://example.com/page/4/index.html">
+<meta property="og:site_name" content="S.F">
+<meta property="og:description" content="该网站为博客类网站，主要用于收录一些关于编程方面的文章。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="DellByte">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Pyhton">
+<meta property="article:tag" content="Html">
+<meta property="article:tag" content="Css">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="NodeJs">
+<meta property="article:tag" content="AJAX">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="资源分享">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>S.F</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>S.F</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>外链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://tuch.xiaohuzg.xyz/img/Home.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="You Can Try It Yourself. - S.F"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/03/01/JavaScript/ES5%E4%B8%8EES6%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="ES5与ES6的区别">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/03/01/JavaScript/ES5%E4%B8%8EES6%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
+          ES5与ES6的区别
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/03/01/JavaScript/ES5%E4%B8%8EES6%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
+        <div>
+          什么是ES6? ES6是 JavaScript 的第六个主要版本标准，于 2015 年发布，带来了许多革命性的语法改进和新特性。以下是其核心特性：  let 和 const 关键字 作用：  ES6中引入了let和const来声明变量,并为它们提供了块级作用域（就相当于局部作用域）,解决了var变量声明的问题。  比较：  let：  声明变量,并且可以修改变量的值 const：  声明常量,也
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-03-01 13:52" pubdate>
+              2025-03-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">#JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/28/Vue/027Vue--vue%E8%B7%AF%E7%94%B1/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vue路由">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/28/Vue/027Vue--vue%E8%B7%AF%E7%94%B1/" target="_self">
+          Vue路由
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/28/Vue/027Vue--vue%E8%B7%AF%E7%94%B1/" target="_self">
+        <div>
+          路由路由其实就是路径与组件之间的映射关系,当用户访问不同的路径时,前端应用会展示不同的组件,可以达到只是局部刷新,而不用重新加载整个页面。 单页应用SPA单页应用(SPA)是指一个项目只加载一个HTML页面,通过路由控制页面内组件的展示与切换,以及网络请求实现页面的局部刷新而无需整体刷新。因为无需全部重新加载,SPA有很多优点。  优点  页面切换快 减轻服务器压力   缺点 首次加载时可能会比较
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-28 09:27" pubdate>
+              2025-02-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/27/Vue/026Vue--Vuex%E7%9A%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vuex的使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/27/Vue/026Vue--Vuex%E7%9A%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+          Vuex的使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/27/Vue/026Vue--Vuex%E7%9A%84%E7%AE%80%E4%BB%8B%E4%B8%8E%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          Vuex简单概述 什么是Vuex？ Vuex是一个状态管理工具,状态指的就是数据。说白了vuex就是个插件,可以帮我们管理Vue中的数据。  使用场景：  某个数据要在多个组件中使用时 多个组件共同维护一个数据   优点：  共同维护,数据集中化管理 响应式变化 操作简单（vuex有一些辅助函数）   注意：  不是所有场景都适用于vuex,只有在必要的时候才使用vuex 使用vuex之后会附加很
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-27 11:49" pubdate>
+              2025-02-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/26/Vue/025Vue--%E6%8F%92%E6%A7%BD%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vue插槽的使用">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/26/Vue/025Vue--%E6%8F%92%E6%A7%BD%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          Vue插槽的使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/26/Vue/025Vue--%E6%8F%92%E6%A7%BD%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          插槽的基本使用在对组件进行复用时,可以通过传值改变组件中使用的数据,但组件中的结构取决于组件本身,无法修改。插槽就可以不改变组件本身的结构,且能够在组件本身结构的基础上添加想加的内容。那么什么是插槽？插槽就是子组件中提供给父组件的一个占位符,用slot标签表示,父组件可以在这占位符中填充任何模板代码,HTML,组件等。填充的内容会替代子组件的slot标签。简单来说就是在创造子组件时,我们留下了一片
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-26 14:25" pubdate>
+              2025-02-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/26/Vue/024Vue--%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vue配置代理">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/26/Vue/024Vue--%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" target="_self">
+          Vue配置代理
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/26/Vue/024Vue--%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" target="_self">
+        <div>
+          配置代理的作用配置代理可以解决跨域问题  什么是跨域？跨域就是两台服务器之间请求与响应时,违反了同源策略（指协议,ip,端口有一样不同）,那么在响应请求时,浏览器就会拦截响应请求,使请求失败  如何解决跨域 引入cors并注册 会让所有服务器都可以请求,无任何限制  配置代理 配置代理可以指定对应的服务器允许请求   如何配置代理在Vue.config.js中配置 方式一：  直接配置如下代码
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-26 10:18" pubdate>
+              2025-02-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/25/JavaScript/JavaScript%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="JavaScript中的防抖与节流">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/25/JavaScript/JavaScript%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" target="_self">
+          JavaScript中的防抖与节流
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/25/JavaScript/JavaScript%E4%B8%AD%E7%9A%84%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" target="_self">
+        <div>
+          防抖 防抖简单介绍   什么是防抖?防止事件的频繁触发。当我们给一个事件设定了防抖函数后,那么在触发事件的一定时间间隔内,如果事件再次触发,那么之前的设定的延迟执行将会被取消,重新开始计算间隔时间,只有在设定的时间间隔内没有触发事件,才会执行事件回调函数。   防抖原理   防抖的核心其实是借助javascript中的定时器setTimeout来实现的。当一个事件触发,我们先设置一个定时器,让函数
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-25 19:16" pubdate>
+              2025-02-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JavaScript/">#JavaScript</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/23/Web/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Web移动端适配方案">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/23/Web/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/" target="_self">
+          Web移动端适配方案
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/23/Web/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88/" target="_self">
+        <div>
+          简述 布局更多的使用flex,尺寸使用rem,vw,vh为单位。 如果是根据不同屏幕需要有不同的布局,一般通过检测屏幕尺寸换不同的站点或者媒体查询使用两套css  方案一rem单位简单介绍 rem以html字体大小为1rem的大小,比如说html字体大小为16px,则1rem就等于16px。rem之所以可以自适应,其实是通过js去重新设置html的字体大小 计算方式:html字体大小 = (js获
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-23 14:46" pubdate>
+              2025-02-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Web%E5%89%8D%E7%AB%AF/" class="category-chain-item">Web前端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Web%E5%89%8D%E7%AB%AF/">#Web前端</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/22/Vue/023Vue--%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vue动画与过渡效果">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/22/Vue/023Vue--%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/" target="_self">
+          Vue动画与过渡效果
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/22/Vue/023Vue--%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C/" target="_self">
+        <div>
+          动画在Vue中,我们有一种新的添加动画的方式,是Vue帮我们新封装的  用以前的方式创建一个简单的动画效果  12345678@keyframes show &#123;    from&#123;        transform: translateX(-100%);    &#125;    to&#123;        transform: translateX(0px);    &#1
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-22 23:02" pubdate>
+              2025-02-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vue消息订阅与发布">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/" target="_self">
+          Vue消息订阅与发布
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/22/Vue/022Vue--%E6%B6%88%E6%81%AF%E8%AE%A2%E9%98%85%E4%B8%8E%E5%8F%91%E5%B8%83/" target="_self">
+        <div>
+          什么是消息订阅与发布消息的订阅与发布也是一种实现组件之间通信的方式,与全局事件总线一样,也可以实现任意组件之间的通信。两个组件之间,收数据的组件订阅消息,发数据的组件发布消息。（消息的订阅与发布使用原生js的方式比较麻烦,这边给大家推荐几个好用的库） pubsub-js 安装pubsub-js库  1npm i pubsub-js  引入（在要订阅消息与发布消息的两个组件之中引入即可）  12//
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-22 16:51" pubdate>
+              2025-02-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2025/02/19/Vue/021Vue--%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/" target="_self">
+          <img src="https://tuch.xiaohuzg.xyz/img/Home.webp" srcset="/img/loading.gif" lazyload alt="Vue全局事件总线">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/02/19/Vue/021Vue--%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/" target="_self">
+          Vue全局事件总线
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/2025/02/19/Vue/021Vue--%E5%85%A8%E5%B1%80%E4%BA%8B%E4%BB%B6%E6%80%BB%E7%BA%BF/" target="_self">
+        <div>
+          什么是全局事件总线（GlobalEventBus）？全局事件总线其实就是一种组件之间通信的方式,可以进行任意组件间通信,大大方便了组件之间的数据传递。例如：B组件要给A组件传递数据,而B组件与A组件是兄弟组件,不能直接传递数据,这时候就需要借助一个中介来传递,我们假设它为x。如果B要给A传递数据,那么A可以给x绑定一个自定义事件,事件回调留在A组件身上,让x带上这个事件,只要别的组件触发这个事件,
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-02-19 15:23" pubdate>
+              2025-02-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/3/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/5/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

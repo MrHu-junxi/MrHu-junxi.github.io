@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DellByte">
+  <meta name="keywords" content="教程,Java,Pyhton,Html,Css,JavaScript,NodeJs,AJAX,Vue,爬虫,前端,后端,博客,资源分享">
+  
+    <meta name="description" content="Vue3介绍 性能提升  源码优化  使用Proxy代替defineProperty实现响应式 重写虚拟DOM和Tree-Shaking   支持TypeScript  Vue3更好的支持TypeScript   新特新  Composltion API(组合式API)  setup()配置 ref与reactive watch与watchEffect provide与inject …   新的内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3更新的一些新内容">
+<meta property="og:url" content="http://example.com/2025/03/10/Vue/028Vue3--%E6%9B%B4%E6%96%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="S.F">
+<meta property="og:description" content="Vue3介绍 性能提升  源码优化  使用Proxy代替defineProperty实现响应式 重写虚拟DOM和Tree-Shaking   支持TypeScript  Vue3更好的支持TypeScript   新特新  Composltion API(组合式API)  setup()配置 ref与reactive watch与watchEffect provide与inject …   新的内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-10T12:56:00.000Z">
+<meta property="article:modified_time" content="2025-05-30T12:05:34.523Z">
+<meta property="article:author" content="DellByte">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Vue3更新的一些新内容 - S.F</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>S.F</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>外链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://tuch.xiaohuzg.xyz/img/Home.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue3更新的一些新内容"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-10 20:56" pubdate>
+          2025年3月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue3更新的一些新内容</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Vue3介绍"><a href="#Vue3介绍" class="headerlink" title="Vue3介绍"></a>Vue3介绍</h2><ol>
+<li><p>性能提升</p>
+</li>
+<li><p>源码优化</p>
+<ol>
+<li>使用<code>Proxy</code>代替<code>defineProperty</code>实现响应式</li>
+<li>重写<code>虚拟DOM</code>和<code>Tree-Shaking</code></li>
+</ol>
+</li>
+<li><p>支持TypeScript</p>
+<ol>
+<li>Vue3更好的支持<code>TypeScript</code></li>
+</ol>
+</li>
+<li><p>新特新</p>
+<ol>
+<li><p><code>Composltion API(组合式API)</code></p>
+<ol>
+<li>setup()配置</li>
+<li>ref与reactive</li>
+<li>watch与watchEffect</li>
+<li>provide与inject</li>
+<li>…</li>
+</ol>
+</li>
+<li><p>新的内置组件</p>
+<ol>
+<li>Fragment</li>
+<li>Teleport</li>
+<li>Suspense</li>
+</ol>
+</li>
+<li><p>其他</p>
+<ol>
+<li>新的生命周期钩子</li>
+<li>data选项应始终被声明为一个函数</li>
+<li>移除keyCode支持作为v-on的修饰符</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="创建Vue3工程"><a href="#创建Vue3工程" class="headerlink" title="创建Vue3工程"></a>创建Vue3工程</h2><h3 id="使用vue-cli创建"><a href="#使用vue-cli创建" class="headerlink" title="使用vue-cli创建"></a>使用vue-cli创建</h3><ol>
+<li><p>查看@vue/cli版本</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">查看@vue/cli版本,确保在4.5.0以上才能安装vue3</span><br>vue --vewsion<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>创建</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vue create vue3-demo<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>选择vue3</p>
+</li>
+</ol>
+<h3 id="使用vite创建"><a href="#使用vite创建" class="headerlink" title="使用vite创建"></a>使用vite创建</h3><p>Vite是新一代前端构建工具</p>
+<ol>
+<li><p>安装vite并且创建项目</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install vite-app vue3-demo<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>进入项目,安装依赖</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm i <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>启动项目</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm run dev<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="分析vue-cli创建的工程"><a href="#分析vue-cli创建的工程" class="headerlink" title="分析vue-cli创建的工程"></a>分析vue-cli创建的工程</h2><ol>
+<li><p><code>main.js</code>文件</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入的不在是Vue构造函数,引入的是一个createApp工厂函数</span><br><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><br>创建应用实例对象并且挂载<br><span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>App.vue</code>文件</p>
+<p> vue3组件中的模板结构可以<code>没有根标签</code></p>
+</li>
+</ol>
+<h2 id="setup-配置项"><a href="#setup-配置项" class="headerlink" title="setup()配置项"></a>setup()配置项</h2><p>Vue3中可以使用Vue2的方法创建组件,但Vue2无法使用Vue3的组合式API。</p>
+<p><code>setup()</code>函数是Vue3中一个新的配置项,它在组件创建时执行,接收两个参数：</p>
+<ol>
+<li>props：值为对象,其中包含组件接收所有<code>props</code>属性</li>
+<li>context：值为对象,包含组件实例相关的属性与方法</li>
+</ol>
+<hr>
+<ol>
+<li><p>声明数据与计算属性：</p>
+<p> Vue3中,需要通过<code>ref</code>与<code>computed</code>函数来声明这些数据</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入ref与computed方法</span><br><span class="hljs-keyword">import</span> &#123; ref,computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;my-demo&#x27;</span>,<br>    <span class="hljs-comment">// 使用setup配置项</span><br>    <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">// 声明数据</span><br>        <span class="hljs-keyword">const</span> num = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)<br>        <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-keyword">return</span> num.<span class="hljs-property">value</span> + <span class="hljs-number">1</span><br>        &#125;)<br><br>        <span class="hljs-comment">// 返回</span><br>        <span class="hljs-keyword">return</span> &#123;<br>            num,<br>            count<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>注册事件处理函数</p>
+<p> 在setup配置项中,直接编写普通的javascript函数使用便可</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs javascript">    <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 声明数据</span><br>    <span class="hljs-keyword">const</span> num = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)<br><br>    <span class="hljs-comment">// 声明函数</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">add</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>        num.<span class="hljs-property">value</span>++<br>    &#125;<br><br>    <span class="hljs-comment">// 返回</span><br>    <span class="hljs-keyword">return</span> &#123;<br>        num,<br>        add<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>定义生命周期钩子函数</p>
+<p> 在setup配置项中,可以编写<code>onMounted</code>和<code>onUnmounted</code>函数来实现一些功能</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-title function_">onMounted</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-comment">// 组件挂载时调用</span><br>    &#125;)<br><br>    <span class="hljs-title function_">onUnmounted</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>        <span class="hljs-comment">// 组件卸载时调用</span><br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>注册子组件</p>
+<p> 只需要通过普通的javascript来注册组件即可,但是<code>需要注意</code>：定义组件时,需要通过<code>defineComponent</code>来定义<code>具备注册子组件能力的组件</code></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入defineComponent方法</span><br><span class="hljs-keyword">import</span> &#123; ref, defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-comment">// 引入子组件</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Son</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./son.vue&#x27;</span><br><br><span class="hljs-comment">// 定义具备注册子组件能力的组件</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineComponent</span>(&#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;fatherComponent&#x27;</span>,<br>    <span class="hljs-comment">// 注册子组件</span><br>    <span class="hljs-attr">components</span>:&#123;<span class="hljs-title class_">Son</span>&#125;,<br>    <span class="hljs-comment">// 使用setup配置项</span><br>    <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;&#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>访问<code>父组件</code>的属性与方法</p>
+<p> 在setup配置项中,通过<code>inject</code>和<code>provide</code>方法来获取与提供属性</p>
+<ol>
+<li>父组件提供属性 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> num = <span class="hljs-title function_">ref</span>(<span class="hljs-number">1</span>)<br>    <span class="hljs-comment">// 提供数据</span><br>    <span class="hljs-title function_">provide</span>(<span class="hljs-string">&#x27;count&#x27;</span>, num)<br>    <span class="hljs-keyword">return</span> &#123;<br>        num,<br>        count<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li>子组件获取属性 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 获取数据</span><br>    <span class="hljs-keyword">const</span> increment = <span class="hljs-title function_">inject</span>(<span class="hljs-string">&#x27;count&#x27;</span>)<br>    <span class="hljs-keyword">return</span> &#123;<br>        count<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>访问路由与路由器等全局属性</p>
+<p> 在setup内可以访问路由与路由器…全局属性</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入方法</span><br><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-comment">// 引入路由与路由器</span><br><span class="hljs-keyword">import</span> &#123;useRoute,useRouter&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br><br><span class="hljs-comment">// 定义具备注册子组件能力的组件</span><br><span class="hljs-keyword">export</span> <span class="hljs-title function_">default</span>(&#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;fatherComponent&#x27;</span>,<br>    <span class="hljs-comment">// 使用setup配置项</span><br>    <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">// 使用路由与路由器</span><br>        <span class="hljs-keyword">const</span> route = <span class="hljs-title function_">useRoute</span>()<br>        <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>()<br>        <span class="hljs-keyword">const</span> add = (<span class="hljs-function">() =&gt;</span> &#123;<br>            router.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;/&#x27;</span>)<br>        &#125;)<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="ref与reactive函数"><a href="#ref与reactive函数" class="headerlink" title="ref与reactive函数"></a>ref与reactive函数</h2><p>在Vue3中,当直接在setup中声明一个普通变量时,那么这个变量不是响应式的,当数据发生更改时,页面不会及时更新。只有使用<code>ref</code>与<code>reactive</code>函数声明的变量才是响应式的。通常使用ref声明<code>简单数据类型</code>,而使用reactive声明<code>复杂数据类型</code>。</p>
+<ol>
+<li><p>声明变量</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 声明变量,注意ref与reactive都需要先引入在使用</span><br>    <span class="hljs-keyword">const</span> school = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;天津&#x27;</span>)<br>    <span class="hljs-keyword">const</span> person = <span class="hljs-title function_">reactive</span>(&#123;<br>        <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;郭德纲&#x27;</span>,<br>        <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>,<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改数据</p>
+<p> 如果只是简单的修改数据,那么依然<code>无法达到响应式</code>的效果(也就是数据改了但页面依然使用之前的数据),想要达到响应式的效果,就需要在修改数据时,不直接修改,而是使用<code>数据名.value = &#39;张三&#39;</code>的形式修改。而使用reactive声明的数据可以直接修改,并且可以<code>直接添加没有定义的数据</code>。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 使用setup配置项</span><br><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 声明变量</span><br>    <span class="hljs-keyword">const</span> school = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;天津&#x27;</span>)<br>    <span class="hljs-keyword">const</span> person = <span class="hljs-title function_">reactive</span>(&#123;<br>      <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;郭德纲&#x27;</span>,<br>      <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>,<br>    &#125;)<br><br>    <span class="hljs-keyword">const</span> add = (<span class="hljs-function">()=&gt;</span>&#123;<br>      school.<span class="hljs-property">value</span> = <span class="hljs-string">&#x27;牛津&#x27;</span>,<br>      person.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;于谦&#x27;</span><br>      person.<span class="hljs-property">age</span> = <span class="hljs-number">60</span><br>      person.<span class="hljs-property">sex</span> = <span class="hljs-string">&#x27;男&#x27;</span><br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>ref与reactive的区别</p>
+<ol>
+<li>ref用来处理简单数据类型,也能处理复杂数据类型。</li>
+<li>reactive用来处理复杂数据类型,无法处理简单数据类型。</li>
+</ol>
+</li>
+<li><p>reactive的一个弊端</p>
+<p> 如果是一一对应的赋值,页面可以达到响应式的效果,可如果是整体赋值,则页面无法达到响应式的效果。</p>
+</li>
+</ol>
+<h2 id="watch与watchEffect"><a href="#watch与watchEffect" class="headerlink" title="watch与watchEffect"></a>watch与watchEffect</h2><ol>
+<li><p>watch</p>
+<p> watch用于监视数据变化,并在数据变化后执行相印的操作,基本语法如下：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-attr">watch</span>:&#123;<br>    <span class="hljs-attr">school</span>:&#123;<br>        <span class="hljs-title function_">handler</span>(<span class="hljs-params">newValue,oldValue</span>)&#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;school被修改了&#x27;</span>)<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p> 需要注意的是,watch是惰性求值,只有在依赖的数据发生变化时,才会执行。</p>
+</li>
+<li><p>watchEffect</p>
+<p> 与watch相比,watchEffect更加简洁,适用于不需要访问之前数据的情况。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">watchEffect</span>(<span class="hljs-params"></span>)&#123;<br>  <span class="hljs-comment">// 逻辑</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p> watchEffect会立即执行传入的函数,并在依赖的数据改变是重新执行。</p>
+</li>
+<li><p>watch与watchEffect的区别</p>
+<ol>
+<li>watch需要定义监视的数据与对应的操作,适用于需要根据特定数据变化时执行特定操作的情况。</li>
+<li>watchEffect不需要定义依赖的数据,适用于不需要访问之前数据的情况。</li>
+</ol>
+</li>
+</ol>
+<h2 id="provide与inject"><a href="#provide与inject" class="headerlink" title="provide与inject"></a>provide与inject</h2><p>provide与inject是用来<code>跨层级组件通信</code>的API,可以使父组件向深层嵌套的子组件传递数据,而无需通过中间组件。</p>
+<ol>
+<li><p>使用</p>
+<ul>
+<li>provide：父组件内提供数据/方法</li>
+<li>inject：子组件内接收数据/方法</li>
+</ul>
+<ol>
+<li><p>父组件：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 声明变量</span><br>    <span class="hljs-keyword">const</span> school = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;天津&#x27;</span>)<br>    <span class="hljs-keyword">const</span> person = <span class="hljs-title function_">reactive</span>(&#123;<br>    <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;郭德纲&#x27;</span>,<br>    <span class="hljs-attr">age</span>:<span class="hljs-number">50</span>,<br>    &#125;)<br><br>    <span class="hljs-comment">// 父组件提供响应式数据</span><br>    <span class="hljs-title function_">provide</span>(<span class="hljs-string">&#x27;school&#x27;</span>,school)<br>&#125;,<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>子组件：</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">// 子组件接收数据,第二个参数为默认值</span><br>    <span class="hljs-title function_">inject</span>(<span class="hljs-string">&#x27;school&#x27;</span>,<span class="hljs-string">&#x27;北京&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>常见使用场景：</p>
+<ol>
+<li><p>切换主题</p>
+<p> 根据提供的主题变量,深层子组件直接注入使用。</p>
+</li>
+<li><p>用户身份/权限</p>
+<p> 全局共享用户信息。</p>
+</li>
+<li><p>多级表单,复杂组件树</p>
+<p> 跨层的表单控件共享数据或校验逻辑。</p>
+</li>
+<li><p>共享工具函数/配置</p>
+<p> 提供全局方法(如日志,请求)或配置参数。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h2><p>什么是Fragments?在vue2中,结构内只能由一个根节点包裹,这会让页面增加不必要的节点。所以在vue3中使用了Fragments,是结构组件内可以有多个根节点。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>        &#123;&#123; school &#125;&#125;<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;@/assets/img/01.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>hello vue3<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>teleport可以以一种便捷的方式在组件内渲染内容到DOM中的另一个位置,有些时候可能需要组件渲染到与其逻辑关联不直接的地方,如：模态框,通知,工具提示以及其他悬浮框。</p>
+<ol>
+<li><p>Teleport基本使用</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Teleport</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;#body&quot;</span>&gt;</span><br>        hello vue<br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Teleport</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p> 组件中,to属性指定想要将组件渲染到的位置</p>
+</li>
+<li><p>用法</p>
+<ol>
+<li><p>创建模态框组件</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Teleport</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;#body&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>这是一个模态框<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Teleport</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p> 创建一个模态框组件,并使用Teleport组件将组件渲染到body中。这样,无论模态框嵌套在什么地方,它的渲染位置总是不会变,能够避免样式冲突问题。</p>
+</li>
+<li><p>创建一个存放模态框的父组件</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">modal</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;modal&quot;</span>&gt;</span>这是模态框,模态框虽然放在这<span class="hljs-tag">&lt;/<span class="hljs-name">modal</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>使用场景</p>
+<ol>
+<li><p>模态框：模态框一般覆盖整个页面,放在body中可以避免样式问题</p>
+</li>
+<li><p>通知和提示：使用Teleport可以将组件渲染在具体目标位置,而不会受限组件层次结构</p>
+</li>
+<li><p>下拉菜单和工具提示：下拉菜单与工具提示一般需要渲染在具体目标位置,而不会受限组件层次结构,避免相对定位问题</p>
+</li>
+<li><p>上下文菜单：一般这些菜单在显示时与触发的组件不在同一个DOM中</p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a>Suspense</h2><p>Suspense是Vue3一个内置组件,可以处理异步组件的加载状态,允许在异步组件加载完成之前显示一个备用内容(加载动画或占位符),从而提升用户体验。</p>
+<ol>
+<li><p>核心功能</p>
+<ol>
+<li>处理异步组件：<br> 可以包裹异步组件,并在组件加载完成之前显示备用内容。</li>
+<li>支持多个异步依赖：<br> 可以同时加载多个异步,并等待所有异步操作完成后再渲染内容。</li>
+<li>提供加载中和加载完成的状态：<ol>
+<li>通过<code>#default</code>插槽显示异步组件的内容。</li>
+<li>通过<code>#fallback</code>插槽显示加载中的备用内容。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>基本使用：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">default</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- 加载异步组件,可以写多个异步组件 --&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">son</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">son</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">fallback</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- 异步加载中显示的备用内容 --&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>loading.....<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>‘Suspense’是新内容,可能会有兼容性问题</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/" class="print-no-link">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

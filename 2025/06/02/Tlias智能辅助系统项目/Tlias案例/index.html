@@ -1,0 +1,693 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="DellByte">
+  <meta name="keywords" content="教程,Java,Pyhton,Html,Css,JavaScript,NodeJs,AJAX,Vue,爬虫,前端,后端,博客,资源分享">
+  
+    <meta name="description" content="Tlias项目为一个后台管理系统，主要开发功能有：  部门管理 查询，新增，修改，删除   员工管理 查询，新增，修改，删除 文件上传   报表统计 登录认证 日志管理 班级，学院管理(实战内容)  准备工作Restful风格REST，表述性状态转换，是一种软件架构风格  Apifox工具由于浏览器地址栏发起的请求，都是GET方式的请求，如果需要发起POST，PUT，DELETE方式的请求，需要借">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tlias后台管理系统项目开发">
+<meta property="og:url" content="http://example.com/2025/06/02/Tlias%E6%99%BA%E8%83%BD%E8%BE%85%E5%8A%A9%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE/Tlias%E6%A1%88%E4%BE%8B/index.html">
+<meta property="og:site_name" content="S.F">
+<meta property="og:description" content="Tlias项目为一个后台管理系统，主要开发功能有：  部门管理 查询，新增，修改，删除   员工管理 查询，新增，修改，删除 文件上传   报表统计 登录认证 日志管理 班级，学院管理(实战内容)  准备工作Restful风格REST，表述性状态转换，是一种软件架构风格  Apifox工具由于浏览器地址栏发起的请求，都是GET方式的请求，如果需要发起POST，PUT，DELETE方式的请求，需要借">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/683d3d6f58cb8da5c8235212.png">
+<meta property="article:published_time" content="2025-06-01T17:06:00.000Z">
+<meta property="article:modified_time" content="2025-06-02T13:33:35.155Z">
+<meta property="article:author" content="DellByte">
+<meta property="article:tag" content="Tlias后台管理系统项目">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/683d3d6f58cb8da5c8235212.png">
+  
+  
+  
+  <title>Tlias后台管理系统项目开发 - S.F</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":false,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>S.F</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>文章</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>外链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://tuch.xiaohuzg.xyz/img/Home.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Tlias后台管理系统项目开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-02 01:06" pubdate>
+          2025年6月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Tlias后台管理系统项目开发</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>Tlias项目为一个后台管理系统，主要开发功能有：</p>
+<ul>
+<li>部门管理<ul>
+<li>查询，新增，修改，删除</li>
+</ul>
+</li>
+<li>员工管理<ul>
+<li>查询，新增，修改，删除</li>
+<li>文件上传</li>
+</ul>
+</li>
+<li>报表统计</li>
+<li>登录认证</li>
+<li>日志管理</li>
+<li>班级，学院管理(实战内容)</li>
+</ul>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="Restful风格"><a href="#Restful风格" class="headerlink" title="Restful风格"></a>Restful风格</h2><p><strong>REST，表述性状态转换，是一种软件架构风格</strong></p>
+<p><img src="https://pic1.imgdb.cn/item/683d3d6f58cb8da5c8235212.png" srcset="/img/loading.gif" lazyload alt="传统风格与Restful风格"></p>
+<h2 id="Apifox工具"><a href="#Apifox工具" class="headerlink" title="Apifox工具"></a>Apifox工具</h2><p>由于浏览器地址栏发起的请求，都是GET方式的请求，如果需要发起POST，PUT，DELETE方式的请求，需要借助这类工具测试</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://apifox.com">https://apifox.com</a></p>
+<h2 id="工程创建"><a href="#工程创建" class="headerlink" title="工程创建"></a>工程创建</h2><ol>
+<li><p>创建SpringBoot工程，并引入Web开发起步依赖，mybatis，mysql驱动，lombok</p>
+</li>
+<li><p>创建数据库表dept，并在application.yml中配置数据库基本信息</p>
+</li>
+<li><p>准备基础代码结构，并引入实体类Dept及统一的响应结果封装类Result</p>
+</li>
+</ol>
+<h3 id="创建SpringBoot工程"><a href="#创建SpringBoot工程" class="headerlink" title="创建SpringBoot工程"></a>创建SpringBoot工程</h3><p>创建SpringBoot项目，并且选择Spring Web，Lombok，MySQL Driver，MyBatis Framework依赖</p>
+<h3 id="创建数据库表"><a href="#创建数据库表" class="headerlink" title="创建数据库表"></a>创建数据库表</h3><ol>
+<li><p>首先创建一个数据库，命名为tlias</p>
+</li>
+<li><p>创建表，并且添加数据</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 创建数据库表<br><span class="hljs-keyword">CREATE TABLE</span> dept(<br>    id <span class="hljs-type">INT</span> UNSIGNED <span class="hljs-keyword">PRIMARY KEY</span> AUTO_INCREMENT COMMENT <span class="hljs-string">&#x27;ID,主键&#x27;</span>,<br>    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">UNIQUE</span> COMMENT <span class="hljs-string">&#x27;部门名称&#x27;</span>,<br>    create_time DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;创建时间&#x27;</span>,<br>    update_time DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;修改时间&#x27;</span><br>) COMMENT <span class="hljs-string">&#x27;部门表&#x27;</span>;<br><br># 添加数据<br><span class="hljs-keyword">INSERT INTO</span> dept <span class="hljs-keyword">VALUES</span><br>    (<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;学工部&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>),<br>    (<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;教研部&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>, <span class="hljs-string">&#x27;2024-09-09 15:17:04&#x27;</span>),<br>    (<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;咨询部&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>, <span class="hljs-string">&#x27;2024-09-30 21:26:24&#x27;</span>),<br>    (<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;事业部&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>),<br>    (<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;人事部&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>, <span class="hljs-string">&#x27;2024-09-25 09:47:40&#x27;</span>),<br>    (<span class="hljs-number">6</span>, <span class="hljs-string">&#x27;行政部&#x27;</span>, <span class="hljs-string">&#x27;2024-11-30 20:56:37&#x27;</span>, <span class="hljs-string">&#x27;2024-09-30 20:56:37&#x27;</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>删除项目中的application.properties文件，创建application.yml文件，并且添加基本配置</p>
+ <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br><span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">tlias-web-management</span><br><br><span class="hljs-attr">datasource:</span><br>    <span class="hljs-comment"># 配置数据库连接信息</span><br>    <span class="hljs-attr">url:</span> <span class="hljs-string">jdbc:mysql://localhost:3306/tlias</span><br>    <span class="hljs-attr">driver-class-name:</span> <span class="hljs-string">com.mysql.cj.jdbc.Driver</span><br>    <span class="hljs-attr">username:</span> <span class="hljs-string">root</span><br>    <span class="hljs-attr">password:</span> <span class="hljs-number">1234</span><br><br><span class="hljs-comment"># 配置MyBatis日志</span><br><span class="hljs-attr">mybatis:</span><br><span class="hljs-attr">configuration:</span><br>    <span class="hljs-attr">log-impl:</span> <span class="hljs-string">org.apache.ibatis.logging.stdout.StdOutImpl</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="准备基础代码结构"><a href="#准备基础代码结构" class="headerlink" title="准备基础代码结构"></a>准备基础代码结构</h3><ol>
+<li><p>在xyz.xiaohuzg.app包下创建controller，service，mapper，pojo包</p>
+</li>
+<li><p>在pojo包下创建两个实体类Dept和Result</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> xyz.xiaohuzg.app.pojo;<br><br><span class="hljs-keyword">import</span> java.time.LocalDateTime;<br><br><span class="hljs-keyword">import</span> lombok.AllArgsConstructor;<br><span class="hljs-keyword">import</span> lombok.Data;<br><span class="hljs-keyword">import</span> lombok.NoArgsConstructor;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Dept</span> &#123;<br>    <span class="hljs-comment">// 与数据库中的字段一一对应</span><br>    <span class="hljs-keyword">private</span> Integer id;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> LocalDateTime createTime;<br>    <span class="hljs-keyword">private</span> LocalDateTime updateTime;<br>&#125;<br></code></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> xyz.xiaohuzg.app.pojo;<br><br><span class="hljs-keyword">import</span> lombok.Data;<br><br><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Result</span> &#123;<br><br>    <span class="hljs-keyword">private</span> Integer code; <span class="hljs-comment">// 返回编码：1 成功, 0 失败</span><br>    <span class="hljs-keyword">private</span> String msg; <span class="hljs-comment">// 错误信息</span><br>    <span class="hljs-keyword">private</span> Object data; <span class="hljs-comment">// 数据</span><br><br>    <span class="hljs-comment">// 成功调用函数 - 不需要给前端返回数据</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Result <span class="hljs-title function_">success</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">Result</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>();<br><br>        result.code = <span class="hljs-number">1</span>;<br>        result.msg = <span class="hljs-string">&quot;success&quot;</span>;<br><br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br>    <span class="hljs-comment">// 成功调用函数 - 需要给前端返回数据</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Result <span class="hljs-title function_">success</span><span class="hljs-params">(Object object)</span>&#123;<br>        <span class="hljs-type">Result</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>();<br><br>        result.data = object;<br>        result.code = <span class="hljs-number">1</span>;<br>        result.msg = <span class="hljs-string">&quot;success&quot;</span>;<br><br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br>    <span class="hljs-comment">// 失败调用函数</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Result <span class="hljs-title function_">error</span><span class="hljs-params">(String msg)</span>&#123;<br>        <span class="hljs-type">Result</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Result</span>();<br><br>        result.code = <span class="hljs-number">0</span>;<br>        result.msg = msg;<br><br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在mapper包中创建DeptMapper接口，并且为接口添加<span style="color:blue">@Mapper</span>注解</p>
+</li>
+<li><p>在service包下创建DeptService接口，然后在service包下创建impl包，impl包中创建DeptServiceImpl实现类，实现DeptService接口，并且为实现类添加<span style="color:blue">@Service</span>注解</p>
+</li>
+<li><p>在controller包下创建DeptController类，并且添加<span style="color:blue">@RestController</span>注解</p>
+</li>
+</ol>
+<h1 id="部门管理"><a href="#部门管理" class="headerlink" title="部门管理"></a>部门管理</h1><h2 id="查询部门"><a href="#查询部门" class="headerlink" title="查询部门"></a>查询部门</h2><h3 id="接口开发"><a href="#接口开发" class="headerlink" title="接口开发"></a>接口开发</h3><p>查询全部部门，并且根据最后修改时间倒序排序</p>
+<ul>
+<li>请求路径：/depts</li>
+<li>请求方式：GET</li>
+<li>请求参数：无</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 查询全部部门,根据最后修改时间倒序排序<br><span class="hljs-keyword">SELECT</span> id, name, create_time, update_time <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> update_time <span class="hljs-keyword">DESC</span>; <br></code></pre></td></tr></table></figure>
+<ol>
+<li><p>编写Controller层代码，接收前端请求</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 注入</span><br><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> DeptService deptService;<br><br><span class="hljs-comment">// @GetMapping(&quot;/depts&quot;)</span><br><span class="hljs-meta">@RequestMapping(value = &quot;/depts&quot;, method = RequestMethod.GET)</span><br><span class="hljs-keyword">public</span> Result <span class="hljs-title function_">list</span><span class="hljs-params">()</span>&#123;<br>    List&lt;Dept&gt; deptList = deptService.findAll();<br>    <span class="hljs-comment">// 返回结果</span><br>    <span class="hljs-keyword">return</span> Result.success(deptList);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编写Service层代码，在DeptService接口中创建findAll方法，并且在DeptServiceImpl实现类中实现findAll方法</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 创建findAll()方法</span><br>List&lt;Dept&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span>;<br></code></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> DeptMapper deptMapper;<br><br><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> List&lt;Dept&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">return</span> deptMapper.findAll();<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编写Mapper(数据访问)层代码，创建DeptMapper接口中的findAll方法</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;SELECT id, name, create_time, update_time from dept ORDER BY update_time DESC&quot;)</span><br>List&lt;Dept&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>全部编写完成以后，启动项目，通过Apifox工具测试请求能否成功</p>
+</li>
+</ol>
+<h3 id="结果封装"><a href="#结果封装" class="headerlink" title="结果封装"></a>结果封装</h3><p>关于返回创建时间与更新时间显示为空的问题：</p>
+<blockquote>
+<p>实体类属性名与数据库表查询的返回字段名一致，mybatis会自动封装。如果不一致，无法自动封装</p>
+</blockquote>
+<ol>
+<li><p>手动结果映射</p>
+<p> 通过<span style="color:blue">@Results</span>和<span style="color:blue">@Result</span>，进行手动结果映射</p>
+<p> 在DeptMapper接口中添加手动结果映射</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Results(&#123;</span><br><span class="hljs-meta">    @Result(column = &quot;create_time&quot;, property = &quot;createTime&quot;),</span><br><span class="hljs-meta">    @Result(column = &quot;update_time&quot;, property = &quot;updateTime&quot;)</span><br><span class="hljs-meta">&#125;)</span><br><span class="hljs-meta">@Select(&quot;SELECT id, name, create_time, update_time from dept ORDER BY update_time DESC&quot;)</span><br>List&lt;Dept&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>起别名</p>
+<p> 在SQL语句中，对不一样的列起别名名，别名和实体类属性名一致</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Select(&quot;SELECT id, name, create_time createTime, update_time updateTime from dept ORDER BY update_time DESC&quot;)</span><br>List&lt;Dept&gt; <span class="hljs-title function_">findAll</span><span class="hljs-params">()</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>开启驼峰命名(推荐)：</p>
+<p> 如果字段名和属性名符合驼峰命名规则(create_time/createTime)，则mybatis会自动通过驼峰命名规则映射</p>
+ <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">mybatis:</span><br>  <span class="hljs-attr">configuration:</span><br>    <span class="hljs-comment"># 开启驼峰命名规则映射</span><br>    <span class="hljs-attr">map-underscore-to-camel-case:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="前后端联调测试"><a href="#前后端联调测试" class="headerlink" title="前后端联调测试"></a>前后端联调测试</h3><p>404 Not Found …</p>
+<h2 id="删除部门"><a href="#删除部门" class="headerlink" title="删除部门"></a>删除部门</h2><p>根据id，删除部门</p>
+<h3 id="接口开发-1"><a href="#接口开发-1" class="headerlink" title="接口开发"></a>接口开发</h3><ul>
+<li>请求路径：/depts</li>
+<li>请求方式：DELETE</li>
+<li>请求参数：id</li>
+</ul>
+<ol>
+<li><p>编写Controller层代码，接收前端请求，并且处理</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@DeleteMapping(&quot;/depts&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteById</span><span class="hljs-params">(Integer id)</span>&#123;<br>    deptService.deleteById(id);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编写Service层代码，在DeptService接口中创建deleteById方法，并且在DeptServiceImpl实现类中实现deleteById方法</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteById</span><span class="hljs-params">(Integer id)</span>&#123;<br>    deptMapper.deleteById(id);<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>编写Mapper层代码，在DeptMapper接口中创建deleteById方法，并执行操作数据库的sql语句</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Delete(&quot;delete from dept where id = #&#123;id&#125;&quot;)</span><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteById</span><span class="hljs-params">(Integer id)</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>在Apifox工具中测试请求能否成功</p>
+</li>
+</ol>
+<p><strong>在接口开发中，一定要确定思路，先写接口，再写实现类，最后写Mapper层代码</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tlias%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE/" class="category-chain-item">Tlias后台管理系统项目</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Tlias%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE/" class="print-no-link">#Tlias后台管理系统项目</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
