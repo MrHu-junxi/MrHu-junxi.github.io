@@ -27,7 +27,7 @@
 <meta property="og:description" content="路由路由其实就是路径与组件之间的映射关系,当用户访问不同的路径时,前端应用会展示不同的组件,可以达到只是局部刷新,而不用重新加载整个页面。 单页应用SPA单页应用(SPA)是指一个项目只加载一个HTML页面,通过路由控制页面内组件的展示与切换,以及网络请求实现页面的局部刷新而无需整体刷新。因为无需全部重新加载,SPA有很多优点。  优点  页面切换快 减轻服务器压力   缺点 首次加载时可能会比较">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-02-28T01:27:00.000Z">
-<meta property="article:modified_time" content="2025-05-30T12:03:25.784Z">
+<meta property="article:modified_time" content="2025-06-03T06:45:19.443Z">
 <meta property="article:author" content="DellByte">
 <meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -182,7 +182,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/" target="_self">
                 <i class="iconfont icon-link-fill"></i>
-                <span>外链</span>
+                <span>友链</span>
               </a>
             </li>
           
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          3.6k 字
         
       </span>
     
@@ -322,39 +322,47 @@
 <h2 id="Vue-router基础配置"><a href="#Vue-router基础配置" class="headerlink" title="Vue router基础配置"></a>Vue router基础配置</h2><p>Vue Router 是 Vue.js的官方路由解决方案,通过它,我们可以<code>轻松管理</code>应用中的页面跳转,路由守卫,懒加载</p>
 <ol>
 <li><p>安装</p>
-<ol>
+<ul>
 <li><p>Vue2</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install vue-router@3<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>Vue3</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install vue-router@4<br></code></pre></td></tr></table></figure>
 </li>
-</ol>
+</ul>
 </li>
 <li><p>封装路由器</p>
-<p> 在src目录(也就是main.js同级目录)下创建<code>router目录</code>,在router目录中创建<code>index.js</code>文件,并且配置一下代码</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 该文件用于创建整个应用的路由器</span><br><br><span class="hljs-comment">// 引入vue-router</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueRouter</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br><br><span class="hljs-comment">// 引入组件</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">MyHome</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/pages/MyHome.vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">MyAbout</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/pages/MyAbout.vue&#x27;</span><br><br><span class="hljs-comment">// 创建并暴露一个路由器</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;<br>    <span class="hljs-comment">// 配置路由</span><br>    <span class="hljs-attr">routes</span>:[<br>        &#123;<br>            <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about&#x27;</span>,<br>            <span class="hljs-attr">component</span>: <span class="hljs-title class_">MyAbout</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/home&#x27;</span>,<br>            <span class="hljs-attr">component</span>: <span class="hljs-title class_">MyHome</span>,<br>        &#125;<br>    ]<br>&#125;)<br></code></pre></td></tr></table></figure>
-<p> 路由组件放在<code>pages目录</code>下,而一般组件放在components目录下</p>
-<p> 路由组件与一般组件</p>
-<ol>
+<p> 在src目录(也就是main.js同级目录)下创建router目录,在router目录中创建index.js文件,并且配置以下代码</p>
+<ul>
+<li><p>Vue2的配置方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 该文件用于创建整个应用的路由器</span><br><br><span class="hljs-comment">// 引入vue-router</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueRouter</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br><br><span class="hljs-comment">// 引入组件</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">MyHome</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/pages/MyHome.vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">MyAbout</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/pages/MyAbout.vue&#x27;</span><br><br><span class="hljs-comment">// 创建并暴露一个路由器</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;<br>    <span class="hljs-comment">// 配置路由</span><br>    <span class="hljs-attr">routes</span>:[<br>        &#123;<br>            <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/about&#x27;</span>,<br>            <span class="hljs-attr">component</span>: <span class="hljs-title class_">MyAbout</span>,<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/home&#x27;</span>,<br>            <span class="hljs-attr">component</span>: <span class="hljs-title class_">MyHome</span>,<br>        &#125;<br>    ]<br>&#125;)<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Vue3的配置方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 路由配置文件</span><br><span class="hljs-comment">// 引入路由vue-router</span><br><span class="hljs-keyword">import</span> &#123; createRouter, createWebHashHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span><br><br><span class="hljs-comment">// 引入路由组件</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Index</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../views/index/index.vue&#x27;</span><br><br><span class="hljs-comment">// 配置路由</span><br><span class="hljs-keyword">const</span> routes = [<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/&#x27;</span>,<br>        <span class="hljs-attr">component</span>: <span class="hljs-title class_">Index</span><br>    &#125;<br>]<br><br><span class="hljs-comment">// 配置routes</span><br><span class="hljs-keyword">const</span> router = <span class="hljs-title function_">createRouter</span>(&#123;<br>    <span class="hljs-comment">// 路由配置</span><br>    routes,<br>    <span class="hljs-comment">// 配置histroy模式</span><br>    <span class="hljs-attr">history</span>: <span class="hljs-title function_">createWebHashHistory</span>()<br>&#125;)<br><br><span class="hljs-comment">// 导出</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router<br></code></pre></td></tr></table></figure>
+<p>Vue3与Vue2只有引入vue-router的方式会有些不同，考虑到性能的缘故，Vue3选择按需加载的方式来提升性能</p>
+<p>路由组件放在pages目录/views目录下,而一般组件放在components目录下</p>
+<p>路由组件与一般组件</p>
+</li>
 <li>路由组件：配置路由时使用到的组件</li>
 <li>一般组件：其他组件</li>
-</ol>
+</ul>
 </li>
 <li><p>在<code>main.js</code>中使用路由器</p>
 <p> 回到main.js文件中引入创建好的router,并在Vue实例中使用</p>
  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 引入路由器</span><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router/index&#x27;</span><br><br><span class="hljs-comment">// 创建vm</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;<br>    <span class="hljs-attr">el</span>:<span class="hljs-string">&#x27;#app&#x27;</span>,<br>    <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>),<br>    <span class="hljs-comment">// 注册路由器</span><br>    router,<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p> Vue3的使用方式也与Vue2有些不同，Vue3直接使用app.use的方式使用即可</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">app.<span class="hljs-title function_">use</span>(router)<br></code></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="使用路由"><a href="#使用路由" class="headerlink" title="使用路由"></a>使用路由</h2><ol>
-<li><p><code>$route</code> 与 <code>$router</code></p>
+<li><p>$route 与 $router</p>
 <p> $route指单个路由,存放当前路径信息与存放的参数<br> $router指整个路由器,路由管理者,里面保存所有路径信息,可以实现路由跳转</p>
 </li>
 <li><p>router-link</p>
-<p> 通过<code>router-link</code>标签替代a标签实现路由切换,router-link最终会被渲染为a标签</p>
+<p> 通过router-link标签替代a标签实现路由切换,router-link最终会被渲染为a标签</p>
 </li>
 <li><p>router-view</p>
-<p> 通过<code>router-view</code>标签指定组件的呈现位置(类似于插槽中的solt标签),router-view标签最终会被渲染为div标签</p>
+<p> 通过router-view标签指定组件的呈现位置(类似于插槽中的solt标签),router-view标签最终会被渲染为div标签</p>
 </li>
 </ol>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>你好！！！<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/about&quot;</span>&gt;</span>About组件<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/home&quot;</span>&gt;</span>Home组件<span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
